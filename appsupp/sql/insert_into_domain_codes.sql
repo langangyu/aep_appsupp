@@ -1,0 +1,154 @@
+SET DEFINE OFF;
+REM INSERTING into DOMAIN_NAMES
+SET DEFINE OFF;
+INSERT
+INTO
+  DOMAIN_NAMES
+  (
+    DOMAIN_NAME_ID,
+    DOMAIN_NAME,
+    APP_CODE,
+    DOMAIN_PROMPT,
+    DESCRIPTION,
+    ROLE,
+    CREATE_USERID,
+    CREATE_TIMESTAMP,
+    UPDATE_USERID,
+    UPDATE_TIMESTAMP
+  )
+  VALUES
+  (
+    7,
+    'ATS_QUARTR',
+    'EDS',
+    'domain prompt',
+    NULL,
+    NULL,
+    'alan',
+    to_timestamp('08-JUN-16 10.59.03.876000000 PM','DD-MON-RR HH.MI.SSXFF AM'),
+    NULL,
+    NULL
+  );
+INSERT
+INTO
+  DOMAIN_CODES
+  (
+    DOMAIN_CODE_ID,
+    CODE,
+    DESCRIPTION,
+    DOMAIN_PROMPT,
+    EFFECTIVE_DATE,
+    TERMINATION_DATE,
+    DOMAIN_NAME_ID,
+    CREATE_USERID,
+    CREATE_TIMESTAMP,
+    UPDATE_USERID,
+    UPDATE_TIMESTAMP
+  )
+  VALUES
+  (
+    74311,
+    '6',
+    'NW',
+    NULL,
+    NULL,
+    NULL,
+    7,
+    'alan',
+    to_timestamp('08-JUN-16 11.07.08.473000000 PM','DD-MON-RR HH.MI.SSXFF AM'),
+    NULL,
+    NULL
+  );
+INSERT
+INTO
+  DOMAIN_CODES
+  (
+    DOMAIN_CODE_ID,
+    CODE,
+    DESCRIPTION,
+    DOMAIN_PROMPT,
+    EFFECTIVE_DATE,
+    TERMINATION_DATE,
+    DOMAIN_NAME_ID,
+    CREATE_USERID,
+    CREATE_TIMESTAMP,
+    UPDATE_USERID,
+    UPDATE_TIMESTAMP
+  )
+  VALUES
+  (
+    9,
+    '7',
+    'NE',
+    NULL,
+    NULL,
+    NULL,
+    7,
+    'alan',
+    to_timestamp('08-JUN-16 11.11.59.018000000 PM', 'DD-MON-RR HH.MI.SSXFF AM')
+    ,
+    NULL,
+    NULL
+  );
+INSERT
+INTO
+  DOMAIN_CODES
+  (
+    DOMAIN_CODE_ID,
+    CODE,
+    DESCRIPTION,
+    DOMAIN_PROMPT,
+    EFFECTIVE_DATE,
+    TERMINATION_DATE,
+    DOMAIN_NAME_ID,
+    CREATE_USERID,
+    CREATE_TIMESTAMP,
+    UPDATE_USERID,
+    UPDATE_TIMESTAMP
+  )
+  VALUES
+  (
+    10,
+    '8',
+    'SW',
+    NULL,
+    NULL,
+    NULL,
+    7,
+    'alan',
+    to_timestamp('08-JUN-16 11.12.06.355000000 PM', 'DD-MON-RR HH.MI.SSXFF AM')
+    ,
+    NULL,
+    NULL
+  );
+INSERT
+INTO
+  DOMAIN_CODES
+  (
+    DOMAIN_CODE_ID,
+    CODE,
+    DESCRIPTION,
+    DOMAIN_PROMPT,
+    EFFECTIVE_DATE,
+    TERMINATION_DATE,
+    DOMAIN_NAME_ID,
+    CREATE_USERID,
+    CREATE_TIMESTAMP,
+    UPDATE_USERID,
+    UPDATE_TIMESTAMP
+  )
+  VALUES
+  (
+    11,
+    '9',
+    'SE',
+    NULL,
+    NULL,
+    NULL,
+    7,
+    'alan',
+    to_timestamp('08-JUN-16 11.12.15.454000000 PM', 'DD-MON-RR HH.MI.SSXFF AM')
+    ,
+    NULL,
+    NULL
+  );
