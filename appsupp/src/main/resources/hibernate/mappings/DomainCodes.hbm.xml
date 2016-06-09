@@ -6,7 +6,9 @@
 		schema="CHIEF_DOM">
 		<id name="domainCodeId" type="big_decimal">
 			<column name="DOMAIN_CODE_ID" precision="22" scale="0" />
-			<generator class="assigned" />
+			<generator class="sequence">
+				<param name="sequence">EDS.ASD_SEQ</param>
+			</generator>
 		</id>
 		<property name="code" type="string">
 			<column name="CODE" length="10" not-null="true" />

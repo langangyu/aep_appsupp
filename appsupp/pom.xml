@@ -446,9 +446,11 @@
 		<!-- c:/java/maven-3.3.9/bin/mvn install:install-file -Dfile=c:/java/oracle/ojdbc6.jar 
 			-DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=6 -Dpackaging=jar -->
 		<dependency>
+		
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>6</version>
+		
 		</dependency>
 
 		<!-- <dependency> -->

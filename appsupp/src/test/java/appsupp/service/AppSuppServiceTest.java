@@ -16,10 +16,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import appsupp.App;
 import appsupp.module.AccessClass;
 import appsupp.module.AppSuppData;
 import appsupp.module.ApplicationSupplement;
 import appsupp.module.DomainCode;
+import appsupp.module.DomainName;
 import appsupp.module.HighLevelLand;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -49,8 +51,7 @@ public class AppSuppServiceTest {
 	@Test
 	@Transactional
 	public void testDao() {
-		List<DomainCode> domainCodes = appSuppService.getAppSuppDao()
-				.getDomainCodesByDomainName("ATS_QUARTR");
+		List<DomainCode> domainCodes = appSuppService.getAppSuppDao().getDomainCodesByDomainName("ATS_QUARTR");
 
 		assertEquals(4, domainCodes.size());
 
@@ -96,20 +97,17 @@ public class AppSuppServiceTest {
 		highLevelLand.getDirection().setCreateUserid(createUserid);
 		highLevelLand.getDirection().setCreateTimestamp(createTimestamp);
 
-		highLevelLand.setContractSignedDate(new AppSuppData(
-				new java.sql.Timestamp((new Date()).getTime())));
+		highLevelLand.setContractSignedDate(new AppSuppData(new java.sql.Timestamp((new Date()).getTime())));
 
 		highLevelLand.getContractSignedDate().setCreateUserid(createUserid);
-		highLevelLand.getContractSignedDate().setCreateTimestamp(
-				createTimestamp);
+		highLevelLand.getContractSignedDate().setCreateTimestamp(createTimestamp);
 
 		highLeveLandName.setCreateUserid(createUserid);
 		highLeveLandName.setCreateTimestamp(createTimestamp);
 
 		HighLevelLand[] hlls = new HighLevelLand[] { highLevelLand };
 
-		appSuppBean.getAccessClass().setHighLevelLands(
-				java.util.Arrays.asList(hlls));
+		appSuppBean.getAccessClass().setHighLevelLands(java.util.Arrays.asList(hlls));
 
 		this.appSuppService.submit(appSuppBean);
 
@@ -117,5 +115,39 @@ public class AppSuppServiceTest {
 
 	private Timestamp getCurrentTimestamp() {
 		return new java.sql.Timestamp((new java.util.Date()).getTime());
+	}
+
+	// @Test
+	// @Transactional
+	public void testSaveDomainName() {
+
+		DomainName dn = new DomainName();
+		dn.setCreateTimestamp(getCurrentTimestamp());
+		dn.setCreateUserid("alan");
+		String domainName = "ATS_QUARTR";
+		dn.setDomainName(domainName);
+		dn.setAppCode(App.APPLICATION_CODE);
+		String domainPrompt = "domain prompt";
+		dn.setDomainPrompt(domainPrompt);
+		this.appSuppService.getAppSuppDao().save(dn);
+
+	}
+
+	// @Test
+	// @Transactional
+	public void testSaveDomainCode() {
+
+		DomainCode dn = new DomainCode();
+		dn.setCreateTimestamp(getCurrentTimestamp());
+		dn.setCreateUserid("alan");
+		String domainName = "ATS_QUARTR";
+		DomainName domainCodeQt = this.appSuppService.getAppSuppDao().getDomainName(domainName);
+		dn.setDomainName(domainCodeQt);
+
+		dn.setDescription("NW");
+		dn.setCode("6");
+
+		this.appSuppService.getAppSuppDao().save(dn);
+
 	}
 }
