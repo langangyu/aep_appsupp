@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://org/hibernate/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 19, 2010 5:16:15 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="appsupp.module.DomainCode" table="DOMAIN_CODES"
+		schema="CHIEF_DOM">
+		<id name="domainCodeId" type="big_decimal">
+			<column name="DOMAIN_CODE_ID" precision="22" scale="0" />
+			<generator class="assigned" />
+		</id>
+		<property name="code" type="string">
+			<column name="CODE" length="10" not-null="true" />
+		</property>
+		<property name="description" type="string">
+			<column name="DESCRIPTION" length="40" not-null="true" />
+		</property>
+		<property name="effectiveDate" type="timestamp">
+			<column name="EFFECTIVE_DATE" length="7" />
+		</property>
+		<property name="terminationDate" type="timestamp">
+			<column name="TERMINATION_DATE" length="7" />
+		</property>
+		<property name="createUserid" type="string">
+			<column name="CREATE_USERID" length="30" not-null="true" />
+		</property>
+		<property name="createTimestamp" type="timestamp">
+			<column name="CREATE_TIMESTAMP" length="7" not-null="true" />
+		</property>
+		<property name="updateUserid" type="string">
+			<column name="UPDATE_USERID" length="30" />
+		</property>
+		<property name="updateTimestamp" type="timestamp">
+			<column name="UPDATE_TIMESTAMP" length="7" />
+		</property>
+
+		<many-to-one name="domainName" class="appsupp.module.DomainName"
+			fetch="select" update="false" insert="false">
+			<column name="DOMAIN_NAME_ID" precision="22" scale="0"
+				not-null="true" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

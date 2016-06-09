@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/webflow 
+		http://www.springframework.org/schema/webflow/spring-webflow.xsd"
+	start-state="start">
+
+	<persistence-context />
+
+	<on-start>
+		<evaluate expression="appSuppService.createAccessRoad()"
+			result="flowScope.appSuppBean" />
+	</on-start>
+
+	<view-state id="start" model="appSuppBean">
+		<transition on="back" to="home" validate="false" />
+		<transition on="next" to="save" validate="true" />
+		<transition on="save" to="saveWork" validate="true" />
+
+	</view-state>
+	
+	<action-state id="saveWork">
+		<evaluate expression="appSuppService.save(appSuppBean)" />
+		<transition on="yes" to="start" />
+		<transition on="no" to="systemException" />
+	</action-state>
+
+
+	<view-state id="save" model="appSuppBean">
+
+		<transition on="next" to="review" validate="true" />
+		<transition on="back" to="start" validate="false" />
+
+	</view-state>
+
+
+	<view-state id="review" model="appSuppBean">
+
+
+		<transition on="next" to="submitAppSupp" validate="true" />
+		<transition on="back" to="save" validate="false" />
+
+	</view-state>
+	<action-state id="submitAppSupp">
+		<evaluate expression="appSuppService.submit(appSuppBean)" />
+
+		<transition on="yes" to="success" />
+		<transition on="no" to="systemException" />
+
+	</action-state>
+
+	<view-state id="success" model="appSuppBean" >
+		<transition on="success" to="home" validate="true" />
+	</view-state>
+
+
+	<end-state id="systemException" view="externalRedirect:contextRelative:error.jsp" />
+	<end-state id="home" 
+		view="externalRedirect:contextRelative:welcome.xhtml" commit="true"/>
+
+	<global-transitions>
+		<transition on="home" to="home" />
+		<transition on="cancel" to="cancel" />
+
+		<!-- <transition on-exception="appsupp.common.ApplicationException" -->
+		<!-- to="systemException" /> -->
+
+		<!-- <transition on-exception="java.lang.Exception" to="systemException" 
+			/> -->
+	</global-transitions>
+
+</flow>

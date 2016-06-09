@@ -1,0 +1,80 @@
+/*
+Structures for internal content
+
+column: 220px
+gutter: 20px
+
+*/
+.box {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: relative;
+    top: 0px;
+    left: 0px;
+}
+.box:first-child, .box.first, .box.newsroom {
+  margin-top: 0px;
+}
+.box.left, .box.right {
+  width: 275px /*1.25 col*/;
+}
+.box.img.portrait {
+  width: 200px /*1.0 col*/;
+}
+.box.left.wide, .box.right.wide, .box.img.wide {
+  width:50% /*1.5 col*/;
+}
+.box.left.narrow, .box.right.narrow, .box.img.narrow {
+  width:150px /*0.75 col*/;
+}
+.box.img.small {
+  width: 125px /*1.0 col*/;
+}
+.box.left {
+  margin-right: 10px;
+  padding-right: 10px;
+}
+.box.right {
+  margin-left: 10px;
+}
+.box.border,
+.box.border-white,
+.box.border-grey,
+.box.border-grey-light,
+.box.border-grey-dark,
+.box.border-primary,
+.box.border-primary-light,
+.box.border-primary-dark,
+.box.border-secondary,
+.box.border-secondary-light,
+.box.border-secondary-dark {
+  margin-top: 10px;
+  padding: 10px;
+  /*width:96.96969%;*/
+}
+
+.box .box {
+  width: 96.96969%;
+}
+
+.box.border.img {
+  padding: 0;
+}
+.box img {
+  max-width: 100%;
+}
+.block {
+  padding: 15px 10px;
+}
+.article {
+  margin: 0;
+  padding: 10px 20px;
+  position: relative;
+}
+.article.full {
+  width: 920px;
+}
+#sidebar .block {
+  margin: 0 0 20px;
+}

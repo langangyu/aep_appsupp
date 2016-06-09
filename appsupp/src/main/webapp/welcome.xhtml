@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="./faces-template/common/edsFacesLayout.xhtml">
+		<ui:param name="currentModule" value="External Main Menu" />
+		<ui:define name="content">
+			<f:view>
+				<h:form id="form" onsubmit="whenSubmitting();">
+					<h:panelGrid columns="1" style="float: left">
+						<h:panelGrid columns="1" style="float: left">
+							<h:outputText style="font-weight: bold"
+								value="Welcome to Electronic Disposition System" />
+						</h:panelGrid>
+						<h:panelGrid columns="1" style="float: left;MARGIN-LEFT: 1in;">
+							<h:outputText
+								style="COLOR: blue; FONT-SIZE: 12pt;font-family:Calibri,sans-serif;"
+								value="For transactions with Alberta Environment and Parks:" />
+						</h:panelGrid>
+						<h:panelGrid columns="1" style="float: left;MARGIN-LEFT: 1.5in;">
+							<h:outputText
+								style="COLOR: blue; FONT-SIZE: 12pt;font-family:Calibri,sans-serif;"
+								value="Personal information taken in this application is collected in accordance with Section 33(a)(c) of the Freedom of Information and Protection of Privacy Act and section 9 of the Public Lands Administration Regulation. Alberta Environment and Parks (AEP) collects, uses and discloses personal information in accordance with Part 2 of the FOIP Act and the Public Lands Administration Regulation. Should you require further information about the collection, use and disclosure of personal information contact FOIP at (780) 427-4429." />
+						</h:panelGrid>
+						<h:panelGrid columns="1" style="float: left;MARGIN-LEFT: 1in;">
+							<h:outputText
+								style="COLOR: blue; FONT-SIZE: 12pt;font-family:Calibri,sans-serif;"
+								value="For transactions with the Alberta Energy Regulator:" />
+						</h:panelGrid>
+						<h:panelGrid columns="1" style="float: left;MARGIN-LEFT: 1.5in;">
+							<h:outputText
+								style="COLOR: blue; FONT-SIZE: 12pt;font-family:Calibri,sans-serif;"
+								value="Personal information in this form is collected under the authority of subsections 33(a) and (c) of the Freedom of Information and Protection of Privacy (FOIP) Act. The information is used by the Alberta Energy Regulator to administer the Responsible Energy Development Act, the specified enactments as defined in that Act, and the regulations and rules under those Acts.  All information contained on this form (including personal information) may be filed on a public record and may be disclosed by the Alberta Energy Regulator in accordance with its normal information dissemination practices or as required by law. For further information about the collection of this information, please contact Customer Contact Centre " />
+							<h:outputLink value="mailto:inquiries@aer.ca">
+								<h:outputText
+									style="text-decoration:underline; COLOR: blue; FONT-SIZE: 12pt;font-family:Calibri,sans-serif;"
+									value="inquiries@aer.ca" />
+							</h:outputLink>
+							<h:outputText
+								style="COLOR: blue; FONT-SIZE: 12pt;font-family:Calibri,sans-serif;"
+								value="403-297-8311, toll-free at 1-855-297-8311" />
+
+						</h:panelGrid>
+						<h:panelGrid columns="1" style="float: left">
+							<h:outputText value="Please make a selection" />
+						</h:panelGrid>
+
+						<h:panelGrid columns="1" style="float: left">
+							<h:outputLink value="app/accessRoad">
+								<h:outputText
+									value="&#160;&#160;&#160;&#160;1. Application Supplement Form Generation" />
+
+							</h:outputLink>
+							<h:outputText
+								value="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;This selection will enable you to create an application supplement form" />
+						</h:panelGrid>
+					</h:panelGrid>
+				</h:form>
+
+				<ui:define name="footer">
+
+				</ui:define>
+			</f:view>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

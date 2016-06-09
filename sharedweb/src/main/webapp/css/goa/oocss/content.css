@@ -1,0 +1,491 @@
+/*
+Relative position/size of internal content elements
+
+Index:
+*Header
+**Navigation
+***Top Nav
+***Meta Navigation
+***Breadbrumbs
+**Search
+*Footer
+*Sidebar
+**Subnav
+*Feature
+*Page
+*/
+
+/*Header***********/
+#skip-links {
+    position: absolute;
+    top: -9999em;
+    left: -9999em;
+    text-align: left;
+}
+
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+#header-logo {
+    position: absolute;
+    width: 409px;
+    height: 40px;
+    top: 40px;
+    left: -4px;
+    z-index: 999;
+}
+
+#header-logo-link {
+    width: 409px;
+    height: 60px;
+    display: block;
+    text-indent: -9999em;
+}
+
+/**Navigation*******/
+
+/***Top Nav********/
+#nav-main {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 940px;
+    z-index: 999;
+}
+
+.nav-main-item {
+    display: inline;
+    height: 70px;
+}
+
+.nav-main-link {
+    cursor: pointer;
+    display: block;
+    float: left;
+    padding: 5px 8px;
+}
+
+#nav .tray {
+    position: relative;
+    padding: 10px;
+}
+
+/***Meta Navigation*/
+#header-top {
+    width: 940px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+    z-index: 10;
+}
+
+#ministry-links {
+    margin: 0;
+    padding: 7px 0 0;
+}
+
+#goa-links {
+    margin: 0;
+    padding: 7px 0 14px;
+}
+
+.header-item {
+    display: inline;
+    height: 70px;
+    margin: 0;
+}
+
+.header-link {
+    padding: 0 8px;
+}
+
+.header-item.first .header-link {
+    padding-left: 0;
+}
+
+.header-item.last .header-link {
+    padding-right: 0;
+}
+
+/***Breadcrumbs */
+#crumbs {
+    margin: 0;
+    padding: 0;
+    width: 920px;
+}
+
+.crumb-item {
+    display: inline;
+    height: 70px;
+}
+
+.crumb-link {
+    float: left;
+    display: inline;
+    padding: 0;
+    line-height: 27px;
+}
+
+.crumb-text {
+    float: left;
+    padding: 0 5px 0 25px;
+    line-height: 27px;
+}
+
+.currentPageHolder {
+    height: 27px;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+    .currentPageHolder .crumb-text {
+        padding: 0 10px 0 25px;
+    }
+
+.crumb-item:first-child .crumb-text {
+    padding-left: 10px;
+}
+
+#content .header {
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+}
+
+/**Search**********/
+#searchBox {
+    margin-top: 5px;
+    height: 25px;
+}
+
+    #searchBox .search-dropdown {
+        height: 22px;
+        padding: 2px;
+        width: 100px;
+    }
+
+.search {
+    clear: right;
+    float: right;
+    position: relative;
+    width: 300px;
+    height: 22px;
+}
+
+    .search label {
+        padding: 4px;
+        display: none;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 192px;
+        z-index: -1;
+    }
+
+    .search .search-text {
+        left: 0;
+        margin-left: 100px;
+        padding: 4px;
+        position: absolute;
+        top: 0;
+        width: 192px;
+    }
+
+    .search .btn {
+        height: 22px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 22px;
+    }
+
+        .search .btn .search-button {
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            height: 22px;
+            padding: 0;
+            position: static;
+            width: 22px;
+        }
+/*Footer***********/
+#footer-logo {
+    float: left;
+    height: 60px;
+    margin-right: 10px;
+    margin-top: -10px;
+    width: 145px;
+}
+
+#footer-logo-link {
+    width: 145px;
+    height: 60px;
+    display: block;
+}
+
+#footer h2 {
+    margin: 0 0 10px;
+    padding: 0 0 9px;
+}
+
+.footer-nav {
+    margin: 0;
+    padding: 0 0 16px;
+    position: relative;
+}
+
+.footer-nav-item {
+    margin: 0;
+    list-style: none;
+}
+
+.footer-nav-link {
+}
+
+.footer-link {
+    padding: 0 8px;
+}
+
+#footer .col {
+    float: left;
+    position: relative;
+}
+
+    #footer .col h3 {
+        margin-top: 10px;
+    }
+
+    #footer .col.left {
+        width: 540px;
+        padding: 0 0 50px;
+    }
+
+    #footer .col.right {
+        width: 215px;
+        padding: 0 0 50px 20px;
+    }
+
+    #footer .col .col.narrow {
+        width: 160px;
+        padding: 0 20px 0 0;
+    }
+
+    #footer .col .col.wide {
+        width: 180px;
+    }
+
+#meta-links {
+    clear: both;
+    padding: 0 0 10px;
+    margin: 0;
+}
+
+#about-links {
+    float: left;
+    display: inline;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.about-item {
+    line-height: inherit;
+}
+
+.about-item, .meta-item {
+    display: inline;
+}
+
+.footer-link {
+    display: inline-block;
+    padding: 0 8px;
+}
+
+.about-item.last .footer-link, .meta-item.last .footer-link {
+    padding-right: 0;
+    border: 0;
+}
+
+#footer .news {
+    padding-right: 80px;
+}
+
+#footer .social {
+    width: 33px;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+    #footer .social .social-link {
+        width: 33px;
+        height: 32px;
+        display: block;
+    }
+
+#footer .facebook, #footer .flickr {
+    right: 44px;
+}
+
+#footer .flickr, #footer .youtube {
+    top: 40px;
+}
+
+#footer .footer-nav-sub {
+    margin-top: 5px;
+}
+
+    #footer .footer-nav-sub .footer-nav-item {
+        list-style: square;
+    }
+
+/*Sidebar**********/
+
+.sidebar-title {
+    padding: 0 0 10px;
+    margin: 0 0 15px;
+}
+
+.sidebar-list {
+    padding: 0 0 0 15px;
+    margin: 10px 0 0;
+    line-height: 1.4;
+}
+
+.sidebar-list-item {
+    margin: 0;
+    padding: 0;
+}
+
+/**Subnav***********/
+.nav-sub {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-sub-item {
+    list-style: none;
+    margin: 0;
+}
+
+.nav-sub-link {
+    display: block;
+    padding: 5px 10px 5px 15px;
+    line-height: 14px;
+}
+/*two deep*/
+.nav-sub li li .nav-sub-link {
+    padding: 3px 10px 3px 28px;
+}
+/*three deep+*/
+.nav-sub li li li .nav-sub-link {
+    padding-left: 40px;
+}
+
+/**Feature*********/
+.article .first {
+    margin-top: 0px;
+}
+
+/*Page*************/
+#sitemap table {
+    margin: 0;
+}
+
+.icon {
+    background: url(../../../image/goa/UI/sprite.png) 0 0 no-repeat;
+    display: block;
+    overflow: hidden;
+}
+
+    .icon.arrow {
+        background-position: -50px -8px;
+        width: 4px;
+        height: 8px;
+        float: right;
+        margin: 4px 0 0 5px;
+        line-height: 8px;
+        vertical-align: middle;
+    }
+
+/*^not currently used - .icon.twtr
+span.twtr-bird {
+  background: url(../images/UI/twtr-bird.png) 0 0 no-repeat;
+  width: 25px;
+  height: 17px;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  line-height: 17px;
+  vertical-align: middle;
+}
+*/
+
+.pageInfo {
+    clear: both;
+    padding: 5px 0 0;
+    width: 660px;
+    margin-top: 20px;
+}
+
+    .pageInfo.bottom {
+        position: absolute;
+        bottom: 10px;
+    }
+
+.docInfo {
+    margin-left: 5px;
+    vertical-align: baseline;
+}
+
+img + .caption, a + .caption {
+    margin-top: 0px;
+}
+
+caption h2, caption h3 {
+    text-align: left;
+}
+
+#contact h3 + h4 {
+    margin-top: 10px;
+}
+
+#contact h4 {
+    font-size: 12px;
+}
+
+    #contact h4 + p {
+        margin-top: 0px;
+        padding-top: 0px;
+    }
+
+.contactFAQHeader {
+    border-bottom: 1px solid lightgray;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#content .header + .article {
+    margin-top: -2px;
+    padding-top: 0;
+}
+
+.article > .box.right:first-child + p,
+.article > .box.right:first-child + h2,
+.article > .box.right:first-child + h3,
+.article > .box.right:first-child + h4,
+.article > .box.left:first-child + p,
+.article > .box.left:first-child + h2,
+.article > .box.left:first-child + h3,
+.article > .box.left:first-child + h4 {
+    margin-top: 0;
+}
+
+.article li > a + p {
+    margin-top: 0px;
+}

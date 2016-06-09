@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/faces-template/common/edsFacesLayout.xhtml">
+	<f:loadBundle basename="application" var="msg" />
+
+	<ui:param name="currentModule" value="#{msg.welcomeTitle}" />
+	<ui:define name="content" style="float:left">
+		<f:view>
+
+			<h:form>
+				<h3>
+					<h:outputText value="#{msg.pageStartTitle}" />
+				</h3>
+				<p>
+					<h:outputText forid="formDate" value="Form Date:" />
+					<p:calendar id="formDate" value="#{appSuppBean.formDatetime}"
+						showOn="button"  >
+ 
+					</p:calendar>
+				</p>
+
+				<p>
+					<p:selectOneMenu id="quarterTypes"
+						value="#{appSuppBean.domainCodeQuarter}" label="quarter">
+						<f:selectItems id="fromQuarterType"
+							value="#{appSuppBean.listOfQuarterTypes}" var="quarter"
+							itemValue="#{quarter}" itemLabel="#{quarter.description}"
+							itemDescription="#{quarter.code}" />
+						<f:converter binding="#{springDomainCodeConverter}" />
+					</p:selectOneMenu>
+				</p>
+
+				<p>
+					<p:selectOneMenu id="govApprovedHighLeveLand"
+						value="#{appSuppBean.govApprovedHighLeveLand}">
+						<f:selectItem itemLabel="Yes" itemValue="true" />
+						<f:selectItem itemLabel="No" itemValue="false" />
+					</p:selectOneMenu>
+				</p>
+
+				<h:commandButton action="back" value="Back" />
+				<h:commandButton action="next" value="Next" />
+						<h:commandButton action="save" value="Save" />
+				<h:commandButton action="cancel" value="Cancel" />
+
+			</h:form>
+
+		</f:view>
+	</ui:define>
+</ui:composition>

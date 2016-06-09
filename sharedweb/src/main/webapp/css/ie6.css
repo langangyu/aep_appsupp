@@ -1,0 +1,180 @@
+/* REMEMBER: AlphaImageLoader paths are relative to the page in which it is loaded. */
+
+span.twtr-bird {
+	background: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image/twtr-bird.png', sizingMethod='scale');
+}
+
+.feature .content .hover,
+.feature .list .hover div {
+	background: #e8e9e9;
+}
+
+.score .rate0		{ z-index: 23; }
+.score .rate0 a	{ z-index: 22; }
+.score .rate0h		{ z-index: 21; }
+.score .rate0h a	{ z-index: 20; }
+.score .rate1		{ z-index: 19; }
+.score .rate1 a	{ z-index: 18; }
+.score .rate1h		{ z-index: 17; }
+.score .rate1h a	{ z-index: 16; }
+.score .rate2		{ z-index: 15; }
+.score .rate2 a	{ z-index: 14; }
+.score .rate2h		{ z-index: 13; }
+.score .rate2h a	{ z-index: 12; }
+.score .rate3		{ z-index: 11; }
+.score .rate3 a	{ z-index: 10; }
+.score .rate3h		{ z-index: 9; }
+.score .rate3h a	{ z-index: 8; }
+.score .rate4		{ z-index: 7; }
+.score .rate4 a	{ z-index: 6; }
+.score .rate4h		{ z-index: 5; }
+.score .rate4h a	{ z-index: 4; }
+.score .rate5		{ z-index: 3; }
+.score .rate5 a	{ z-index: 2; }
+
+.score .rate0 a	{ background: none !important; }
+
+
+#content .article ol li a {
+	padding-left: 5px;
+}
+
+#content .news-item .tags li {
+	padding-right: 8px;
+}
+
+#footer .inner {
+	padding: 25px 0 20px;
+}
+
+#headlines .ticker {
+	display: inline;
+}
+
+#nav .main li a span.arrow-icon {
+	float: left;
+	margin: 6px 5px 0 0;
+}
+
+#nav #main .section {
+	padding-bottom: 0;
+}
+
+#nav #main ul.more .top {
+	position: static;
+}
+
+#nav #main ul.more .top a {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+}
+
+#nav .crumbs li span {
+	background: #ffcd29 url(../image/page-crumbs-arrow-ie6.png) 0 0 no-repeat;
+}
+
+#nav .crumbs li a span {
+	cursor: pointer;
+}
+
+#nav .crumbs li.current a {
+	background: #e6e6e6 url(../image/page-crumbs-end-ie6.png) 100% 100% no-repeat;
+}
+
+#nav .crumbs li.current a span {
+	background: url(../image/page-crumbs-arrow-ie6.png) 0 0 no-repeat;
+}
+
+#nav .sub li {
+	overflow: hidden;
+}
+
+#nav .sub li a {
+	background: none !important;
+	display: inline;
+}
+
+#nav .moresub a {
+	display: block;
+	padding: 5px;
+	font-weight: normal;
+	color: #36424b;
+}
+
+#nav .sub .submore {
+	float: none;
+	position: absolute;
+	left: 10px;
+}
+
+#services ul {
+	width: 100%;
+	display: inline;
+}
+
+#services ul li {
+	width: 226px;
+	margin: 0;
+}
+
+#services ul li span {
+	display: list-item;
+	padding: 0 0 0 20px;
+	list-style-position: inside;
+	list-style-type: square;
+}
+
+
+#slides .arrows a span {
+	background: url(../image/slide-arrows-ie6.png) 0 0 no-repeat;
+}
+
+/* IE6 struggles with pseudo classes. It mostly only honours them on anchor (a) tags, and,
+unless we "activate" it first, IE won't acknowledge the styling for children of anchors. */
+
+#slides .arrows a.ie6:link span,
+#slides .arrows a.ie6:visited span,
+#slider #slides .arrows a.ie6:hover,
+#slider #slides .arrows a.ie6:active {
+	visibility: visible;
+}
+
+#slides .arrows a.ie6:link span,
+#slides .arrows a.ie6:visited span {
+	visibility: hidden;
+}
+
+#slider #slides .arrows a.ie6:hover span,
+#slider #slides .arrows a.ie6:active span {
+	visibility: visible;
+}
+
+/* Drop down styles*/
+
+.selectbox {
+	display: block;  
+	padding:4px 0 0 4px;
+	font-size:1em;/* Resize Font*/
+	text-align:left;
+	background: url('../image/btn_dropdown.gif') no-repeat right;
+	cursor: pointer;
+	height: 17px;
+	border: 1px solid #0F6686;
+	font: 11px/1.2 Arial, Helvetica, sans-serif;
+	color: #606a73;
+	vertical-align:middle;
+}
+
+/* OL list styles*/
+
+#content .article ol {
+	padding: 0 0px 12px 35px;
+	list-style-position: outside;
+}
+
+#content .article ol li span{
+	margin:0 0 0 -10px;
+	padding:0;
+}

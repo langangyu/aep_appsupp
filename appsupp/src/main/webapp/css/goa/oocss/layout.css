@@ -1,0 +1,77 @@
+/*
+Major elements of site structure and page common elements
+
+Index:
+*Page
+*Header
+*Navigation
+*Footer
+*Sidebar
+*Content
+*/
+
+/*Page***********/
+/*container for page-width elements*/
+.inner {
+    width: 940px;
+    margin: 0 auto 20px;
+}
+
+/*Header***********/
+#header .inner {
+    position: relative;
+    padding: 100px 0 0;
+    z-index: 1;
+}
+
+/*Navigation*******/
+#nav {
+    /*margin: 0 0 20px;*/
+    margin: 0;
+}
+
+/*Footer***********/
+#footer {
+    clear: both;
+    padding: 0 0 30px;
+}
+
+    #footer .inner {
+        padding: 20px 0;
+        margin-bottom: 0;
+    }
+
+/*Sidebar**********/
+#sidebar {
+    float: right;
+    margin-left: 0;
+    margin-right: 20px;
+    width: 220px;
+}
+
+/*Content**********/
+#content {
+    float: right;
+    width: 700px;
+}
+
+    #content.full {
+        width: 940px;
+    }
+
+.box.columns {
+    display: table;
+}
+
+.columns .box.left, .columns .box.right {
+    width: 315px;
+}
+
+.list-photo {
+    margin: 0;
+    padding: 0;
+}
+
+    .list-photo li {
+        list-style-type: none;
+    }

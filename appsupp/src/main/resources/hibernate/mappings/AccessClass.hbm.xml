@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping SYSTEM "classpath://org/hibernate/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 19, 2010 5:16:15 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="appsupp.module.AccessClass" table="ACCESS_CLASS"
+		schema="eds">
+		<id name="accessClassId" type="integer">
+			<column name="ACCESS_CLASS_ID" precision="12" scale="0" />
+			<generator class="sequence">
+				<param name="sequence">EDS.ACCESS_CLASS_SEQ</param>
+			</generator>
+		</id>
+
+		<many-to-one name="domainCodeRoadClass" class="appsupp.module.AppSuppData"
+			fetch="join">
+			<column name="ASD_ID_ROAD_CLASS" precision="12" scale="0"
+				not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="variableConstructionTechniques" class="appsupp.module.AppSuppData"
+			fetch="join">
+			<column name="ASD_ID_VAR_CON_TECH" precision="12" scale="0"
+				not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="appSupp" class="appsupp.module.ApplicationSupplement"
+			fetch="select">
+			<column name="APP_SUPP_ID" precision="12" scale="0" not-null="true">
+			</column>
+		</many-to-one>
+
+		<property name="createUserid" type="string">
+			<column name="CREATE_USERID" length="30" not-null="true" />
+		</property>
+		<property name="createTimestamp" type="timestamp">
+			<column name="CREATE_TIMESTAMP" length="7" not-null="true" />
+		</property>
+		<property name="updateUserid" type="string">
+			<column name="UPDATE_USERID" length="30" />
+		</property>
+		<property name="updateTimestamp" type="timestamp">
+			<column name="UPDATE_TIMESTAMP" length="7" />
+		</property>
+
+		<bag name="highLevelLands" inverse="true" cascade="all,delete-orphan">
+			<key>
+				<column name="APP_SUPP_ID" precision="12" scale="0" not-null="true" />
+			</key>
+			<one-to-many class="appsupp.module.HighLevelLand" />
+		</bag>
+	</class>
+</hibernate-mapping>

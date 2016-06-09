@@ -1,0 +1,344 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: Arial;
+	font-size: 10pt;
+	background: #ffffff;
+}
+
+td {
+	font-family: Arial;
+	font-size: 10pt;
+	vertical-align: text-top;
+}
+
+#edsTitle {
+	font-weight: bold;
+	font-size: 9pt;
+	letter-spacing: 5px;
+}
+
+#edsCopyright {
+	font-size: 8pt;
+}
+
+#warning {
+	font-size: 10pt;
+	font-weight: bold;
+	color: #CC4444;
+}
+
+#disclaimer {
+	font-size: 8pt;
+	color: #884444;
+}
+
+a:link {
+	text-decoration: none
+}
+
+a:visited {
+	text-decoration: none
+}
+
+.fncDataTable {
+	text-align: left;
+}
+
+.fncDataTableRow0 {
+	background-color: #C0C0C0;
+	color: black;
+}
+
+.fncDataTableRow1 {
+	background-color: #FFFFFF;
+	color: black;
+}
+
+.fncColumnSelectAll {
+	text-align: center;
+	width: 20px;
+}
+
+.fncColumnDispositionNumber {
+	width: 120px;
+	vertical-align: middle;
+}
+
+.fncColumnAreaDistance {
+	width: 120px;
+}
+
+.fncColumnFncActivityNumber {
+	width: 120px;
+}
+
+.fncColumnPurposeTypeDropdownSelection {
+	text-align: left;
+	max-width: 625px;
+	vertical-align: middle;
+}
+
+.fncColumnPurposeTypeText {
+	width: 200px;
+	float: left;
+	text-wrap: unrestricted;
+	vertical-align: middle;
+}
+
+.fncColumnHeaderAreaDistance {
+	font: bold;
+	text-align: center;
+}
+
+.fncColumnLandFromTo {
+	width: 220px;
+}
+
+.fncColumnLandFromToText {
+	width: 180px;
+	text-align: left;
+}
+
+.fncColumnCmdLink {
+	width: 20px;
+}
+
+.fncColumnHeaderLandUseArea {
+	font: bold;
+	text-align: center;
+	width: 205px;
+}
+
+.fncColumnLandUseAreaText {
+	width: 150px;
+}
+
+.fncColumnFirstNationText {
+	width: 200px;
+}
+
+.fncColumnActionRequiredDropdownSelection {
+	width: 250px;
+}
+
+.fncColumnActionRequiredText {
+	width: 200px;
+}
+
+.fncColumnDecisionDate {
+	width: 50px;
+}
+
+.fncAreaDistText {
+	width: 30%;
+	text-align: right;
+	vertical-align: top;
+}
+
+.fncAtsLandQtrDataInputLabel {
+	width: 105px;
+	font: bold;
+	margin: 0px 2px;
+	text-align: center;
+}
+
+.fncAtsLandDataInputLabel {
+	width: 35px;
+	font: bold;
+	margin: 1px 1px;
+	text-align: center;
+}
+
+.fncAtsLandQtrDataInput {
+	width: 65px;
+	text-align: right;
+	border: solid 1px;
+	margin: 1px 1px;
+}
+
+.fncAtsLandDataInput {
+	width: 35px;
+	text-align: right;
+	border: solid 1px;
+	margin: 1px 1px;
+}
+
+.fncAtsLandTextLabel {
+	width: 35px;
+	font: bold;
+	text-align: center;
+}
+
+.fncAtsLandText {
+	width: 35px;
+	text-align: center;
+}
+
+.fncDataTableSearch {
+	text-align: left;
+}
+
+.fncDataTableFncNumber {
+	text-align: center;
+}
+
+.fncDocumentAttributes {
+	width: 150px;
+}
+
+.termsOfUseTitle {
+	font-weight: bold;
+}
+
+.termsOfUseAddress {
+	font-weight: bold;
+	padding-left: 50px;
+}
+
+.sne50pctCol {
+	width: 50%;
+}
+
+.sne80pctCol {
+	width: 80%;
+}
+
+.sne20pctCol {
+	width: 20%;
+}
+
+.sneDispostionNumber {
+	font-weight: bold;
+	text-align: left;
+}
+
+.renewalForm {
+	left: 10%;
+	width: 800px;
+	background: #ffffff
+}
+
+.panelGridWithBorder table {
+	border-collapse: collapse;
+	float: left;
+	margin: auto 0;
+	padding-left: 5px;
+}
+
+.panelGridWithBorder tr,.panelGridWithBorder td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding-left: 5px;
+}
+
+/* 	Make sure class .panelGridNoBorder is declared after class .panelGridWithBorder.
+	The order is very important. The last class will override the previous class. 	*/
+.panelGridNoBorder table {
+	float: left;
+	margin: auto 0;
+}
+
+.panelGridNoBorder tr,.panelGridNoBorder td {
+	border: none;
+}
+
+.ui-selectonemenu label.ui-selectonemenu-label {
+	text-align: left;
+}
+
+.fncDataTableSearch table {
+    width: auto;
+}
+
+.ui-panel {
+	border: none;
+}
+
+.TableHeader {
+	color: #000000;
+	background-color: #F1F1F1;
+	padding: 3px;
+	text-align: left;
+	border: solid 1px;
+}
+
+#form {
+	font-family: Arial;
+	font-size: 10pt;
+	vertical-align: top;
+}
+
+th {
+	font-family: Arial;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.box_disabled {
+	border: solid 1px;
+	background-color: #BDBFBF;
+}
+
+.message {
+	color: red;
+	margin: 10px;
+}
+
+.message tr,.message td {
+	border: none;
+}
+
+.fieldLabel {
+	text-align: right;
+	font-weight: bold;
+}
+
+.txtcol {
+	width: 50%;
+	text-align: center;
+}
+
+.imgcol {
+	width: 60px;
+}
+
+.centered {
+	margin: 0px auto;
+}
+
+.labelcol {
+	width: 25%;
+	text-align: left;
+	font-weight: bold;
+}
+
+.valuecol {
+	width: 75%;
+	padding-left: 5px;
+	text-align: left;
+}
+
+.hdrcol {
+	text-align: center;
+	font-weight: bold;
+}
+
+.defaultsink {
+	position: absolute;
+	right: 100%;
+}
+
+.embeddedTable {
+	float: left;
+	width: 100%
+}
+
+.editLink {
+	text-decoration: none;
+	color: blue !important;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 placeholder */
+	color: #c4c4c4 !important;
+}
