@@ -18,14 +18,11 @@ public class ApplicationException extends RuntimeException {
 	 * 
 	 * @return an error message to display.
 	 */
-	static String composeErrorMessage(String theSystemMessage,
-			String theErrorMessage, Throwable theInitialCause) {
+	static String composeErrorMessage(String theSystemMessage, String theErrorMessage, Throwable theInitialCause) {
 
 		return (theSystemMessage != null ? theSystemMessage : "")
-				+ (theErrorMessage != null ? "\n\n" + theErrorMessage : "")
-				+ (theInitialCause != null ? ("\n\n"
-						+ theInitialCause.getClass().getName() + ": " + theInitialCause
-						.getMessage()) : "");
+				+ (theErrorMessage != null ? "\n\n" + theErrorMessage : "") + (theInitialCause != null
+						? ("\n\n" + theInitialCause.getClass().getName() + ": " + theInitialCause.getMessage()) : "");
 	}
 
 	/**
@@ -56,11 +53,9 @@ public class ApplicationException extends RuntimeException {
 	 * @param theInitialCause
 	 *            Cause of the exception.
 	 */
-	public ApplicationException(String theErrorMessage,
-			Throwable theInitialCause) {
+	public ApplicationException(String theErrorMessage, Throwable theInitialCause) {
 
-		super(ApplicationException.composeErrorMessage(
-				ApplicationException.SYSTEM_ERROR_MESSAGE, theErrorMessage,
+		super(ApplicationException.composeErrorMessage(ApplicationException.SYSTEM_ERROR_MESSAGE, theErrorMessage,
 				theInitialCause), theInitialCause);
 	}
 }

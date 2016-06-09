@@ -1,4 +1,4 @@
-package appsupp.module.common;
+package appsupp.common;
 
 import java.util.Comparator;
 

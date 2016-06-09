@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.model.SelectItem;
 
@@ -16,19 +18,18 @@ import org.springframework.transaction.annotation.Transactional;
 import appsupp.common.ApplicationException;
 import appsupp.dao.AppSuppDao;
 import appsupp.module.AccessClass;
+import appsupp.module.AppSuppData;
 import appsupp.module.ApplicationSupplement;
 import appsupp.module.DomainCode;
-import appsupp.module.HighLevelLand;
+import appsupp.module.HighLevelPlan;
 import appsupp.module.Reservation;
-import appsupp.module.common.AppSuppDomainNames;
-import appsupp.module.common.DomainCodesComparator;
+import appsupp.common.AppSuppDomainNames;
+import appsupp.common.DomainCodesComparator;
 
 @Component
-public class AppSuppService implements AppSuppServiceInterface,
-		java.io.Serializable {
+public class AppSuppService implements AppSuppServiceInterface, java.io.Serializable {
 
-	private static Logger logger = Logger.getLogger(AppSuppService.class
-			.getName());
+	private static Logger logger = Logger.getLogger(AppSuppService.class.getName());
 	/**
 	 * 
 	 */
@@ -36,28 +37,24 @@ public class AppSuppService implements AppSuppServiceInterface,
 	private AppSuppDao appSuppDao;
 
 	private static final long serialVersionUID = 1L;
+	private static final String DEFAULT_USER = "default_user";
 
 	@Override
 	@Transactional(readOnly = false)
 	public ApplicationSupplement createAccessRoad() throws ApplicationException {
-		ApplicationSupplement appSuppBean = new ApplicationSupplement(
-				"ACCESSROAD");
+		ApplicationSupplement appSuppBean = new ApplicationSupplement("ACCESSROAD");
 		init(appSuppBean);
-		Timestamp createTimestamp = new java.sql.Timestamp(
-				(new java.util.Date().getTime()));
+		Timestamp createTimestamp = new java.sql.Timestamp((new java.util.Date().getTime()));
 
 		appSuppBean.setCreateTimestamp(createTimestamp);
 		appSuppBean.setCreateUserid("test");
 		appSuppBean.setDomainCodeActivityType(new DomainCode(0, "LOC", "LOC"));
 		appSuppBean.setFormName("test");
 
-		appSuppBean.setListOfQuarterTypes(this.getAppSuppDao()
-				.getDomainCodesByDomainName("ATS_QUARTR"));
-		appSuppBean.getListOfQuarterTypes().add(
-				new DomainCode(0, "test", "test"));
+		appSuppBean.setListOfQuarterTypes(this.getAppSuppDao().getDomainCodesByDomainName("ATS_QUARTR"));
+		appSuppBean.getListOfQuarterTypes().add(new DomainCode(0, "test", "test"));
 
-		logger.debug("loaded domain codes (QTR) size:"
-				+ appSuppBean.getListOfQuarterTypes().size());
+		logger.debug("loaded domain codes (QTR) size:" + appSuppBean.getListOfQuarterTypes().size());
 
 		return appSuppBean;
 
@@ -71,8 +68,7 @@ public class AppSuppService implements AppSuppServiceInterface,
 	}
 
 	@Transactional(readOnly = false)
-	public boolean save(ApplicationSupplement appSuppBean)
-			throws ApplicationException {
+	public boolean save(ApplicationSupplement appSuppBean) throws ApplicationException {
 		this.getAppSuppDao().save(appSuppBean);
 		return true;
 
@@ -118,12 +114,16 @@ public class AppSuppService implements AppSuppServiceInterface,
 		this.initWaterbodyClasses(appSupp);
 
 		this.initReservationTable(appSupp);
-		this.initHigherLevels(appSupp);
+
 	}
 
 	private void initAccessClass(ApplicationSupplement appSupp) {
-		AccessClass accessClass = new AccessClass();
+		AccessClass accessClass = new AccessClass(this.getCurrentTimestamp(), DEFAULT_USER);
+
 		appSupp.setAccessClass(accessClass);
+		accessClass.setAppSupp(appSupp);
+
+		this.addNewHighLevelLand(appSupp.getAccessClass());
 
 	}
 
@@ -137,8 +137,7 @@ public class AppSuppService implements AppSuppServiceInterface,
 	private void initSupplmentTypes(ApplicationSupplement appSupp) {
 		List<SelectItem> suppTypes = new ArrayList<SelectItem>();
 		suppTypes.add(new SelectItem("", ""));
-		suppTypes.add(new SelectItem("applicationSupplement",
-				"Application Supplement"));
+		suppTypes.add(new SelectItem("applicationSupplement", "Application Supplement"));
 		suppTypes.add(new SelectItem("mitigationReport", "Mitigation Report"));
 		appSupp.setListOfSupplmentTypes(suppTypes);
 	}
@@ -216,9 +215,9 @@ public class AppSuppService implements AppSuppServiceInterface,
 		appSupp.setListOfReservationTablePurposeCodes(initList(AppSuppDomainNames.RESERVATION_TABLE_PURPOSE_CODES));
 	}
 
-	private void initReservationTableRestrictionCodes(
-			ApplicationSupplement appSupp) {
-		appSupp.setListOfReservationTableRestrictionCodes(initList(AppSuppDomainNames.RESERVATION_TABLE_RESTRICTION_CODES));
+	private void initReservationTableRestrictionCodes(ApplicationSupplement appSupp) {
+		appSupp.setListOfReservationTableRestrictionCodes(
+				initList(AppSuppDomainNames.RESERVATION_TABLE_RESTRICTION_CODES));
 	}
 
 	private void initHigherLevelPlanDirections(ApplicationSupplement appSupp) {
@@ -270,23 +269,39 @@ public class AppSuppService implements AppSuppServiceInterface,
 		appSupp.setReservations(reservations);
 	}
 
-	private void initHigherLevels(ApplicationSupplement appSupp) {
-		List<HighLevelLand> highLevelLands = new ArrayList<HighLevelLand>();
-		highLevelLands.add(new HighLevelLand());
-		appSupp.getAccessClass().setHighLevelLands(highLevelLands);
+	public void addNewHighLevelLand(AccessClass accessClass) {
+
+		HighLevelPlan highLevelPlan = createNewHighLevelPlan(accessClass.getAppSupp());
+		highLevelPlan.setAccessClass(accessClass);
+		highLevelPlan.setFields(this.getFields(AppSuppDomainNames.HIGH_LEVEL_PLAN));
+
+		accessClass.getHighLevelPlans().add(highLevelPlan);
 	}
 
-	public void addNewHighLevelLand(ApplicationSupplement appSuppBean) {
+	private Map<String, AppSuppData> getFields(String highLevelPlan) {
+		List<DomainCode> domainCodes = this.appSuppDao.getDomainCodesByDomainName(highLevelPlan);
+		Map<String, AppSuppData> fields = new HashMap<String, AppSuppData>();
+		for (DomainCode domainCode : domainCodes) {
+			AppSuppData appSuppData = new AppSuppData(this.getCurrentTimestamp(), DEFAULT_USER);
+			appSuppData.setDescription(domainCode.getDescription());
+			appSuppData.setLabel(domainCode.getCode());
+			appSuppData.setField(domainCode);
+			fields.put(domainCode.getCode(), appSuppData);
 
-		HighLevelLand highLevelLand = new HighLevelLand();
+		}
+
+		return fields;
+	}
+
+	private HighLevelPlan createNewHighLevelPlan(ApplicationSupplement appSuppBean) {
+		HighLevelPlan HighLevelPlan = new HighLevelPlan();
 
 		Timestamp currentTime = this.getCurrentTimestamp();
-		highLevelLand.setCreateTimestamp(currentTime);
-		highLevelLand.setCreateUserid(appSuppBean.getCreateUserid());
-		highLevelLand.setRowNumber(appSuppBean.getAccessClass()
-				.getHighLevelLands().size());
+		HighLevelPlan.setCreateTimestamp(currentTime);
+		HighLevelPlan.setCreateUserid(appSuppBean.getCreateUserid());
+		HighLevelPlan.setRowNumber(appSuppBean.getAccessClass().getHighLevelPlans().size());
 
-		appSuppBean.getAccessClass().getHighLevelLands().add(highLevelLand);
+		return HighLevelPlan;
 	}
 
 	public void addNewReservation(ApplicationSupplement appSuppBean) {
@@ -304,4 +319,11 @@ public class AppSuppService implements AppSuppServiceInterface,
 	protected Timestamp getCurrentTimestamp() {
 		return new Timestamp((new Date()).getTime());
 	}
+
+	@Override
+	public ApplicationSupplement getApplicationSupplement(Integer appSuppId) {
+		ApplicationSupplement appSupp = this.getAppSuppDao().getApplicationSupplement(appSuppId);
+		return appSupp;
+	}
+
 }

@@ -23,4 +23,10 @@ public class AppSuppDao extends AbstractSpringHibernateDao implements AppSuppDao
 
 	}
 
+	public ApplicationSupplement getApplicationSupplement(Integer appSuppId) {
+		return (ApplicationSupplement) this.getHibernateTemplate().getSessionFactory().getCurrentSession()
+				.get(ApplicationSupplement.class, appSuppId);
+
+	}
+
 }

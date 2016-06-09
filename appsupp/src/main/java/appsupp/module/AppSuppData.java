@@ -8,22 +8,41 @@ public class AppSuppData implements java.io.Serializable {
 
 	private static final long serialVersionUID = -87116268751536996L;
 	private Integer asdId;
+	
+	private String label;
+	private DomainCode field;
 	private DomainCode domainCodeValue;
 	private String stringValue;
 	private Timestamp timestampValue;
 	private Boolean booleanValue;
 	private String others;
-	private String label;
+
 	private boolean isOtherSelected;
 	private String description;
 	private List<DomainCode> listOfValues = new ArrayList<DomainCode>();
 	private String[] selectedCheckboxes = new String[0];
 
-
 	private String createUserid;
 	private Timestamp createTimestamp;
 	private String updateUserid;
 	private Timestamp updateTimestamp;
+
+	public AppSuppData() {
+
+	}
+
+	public AppSuppData(String stringValue) {
+		this.setStringValue(stringValue);
+	}
+
+	public AppSuppData(Timestamp datetime) {
+		this.setTimestampValue(datetime);
+	}
+
+	public AppSuppData(Timestamp currentTimestamp, String defaultUser) {
+		this.createTimestamp = currentTimestamp;
+		this.createUserid = defaultUser;
+	}
 
 	public String getCreateUserid() {
 		return createUserid;
@@ -81,7 +100,6 @@ public class AppSuppData implements java.io.Serializable {
 		this.stringValue = stringValue;
 	}
 
- 
 	public Boolean getBooleanValue() {
 		return booleanValue;
 	}
@@ -138,19 +156,6 @@ public class AppSuppData implements java.io.Serializable {
 		this.selectedCheckboxes = selectedCheckboxes;
 	}
 
-
-	public AppSuppData() {
-
-	}
-
-	public AppSuppData(String stringValue) {
-		this.setStringValue(stringValue);
-	}
-
-	public AppSuppData(Timestamp datetime) {
-		this.setTimestampValue(datetime);
-	}
-
 	public Timestamp getTimestampValue() {
 		return timestampValue;
 	}
@@ -158,5 +163,14 @@ public class AppSuppData implements java.io.Serializable {
 	public void setTimestampValue(Timestamp timestampValue) {
 		this.timestampValue = timestampValue;
 	}
+
+	public DomainCode getField() {
+		return field;
+	}
+
+	public void setField(DomainCode field) {
+		this.field = field;
+	}
+
 
 }

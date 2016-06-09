@@ -1,14 +1,15 @@
 package appsupp.module;
 
 import java.sql.Timestamp;
+import java.util.Map;
 
-public class HighLevelLand implements java.io.Serializable {
+public class HighLevelPlan implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6695349863456927137L;
-	private Integer hllId;
+	private Integer hlpId;
 	private AccessClass accessClass;
 	private AppSuppData name;
 	private AppSuppData direction;
@@ -18,11 +19,15 @@ public class HighLevelLand implements java.io.Serializable {
 	private Timestamp createTimestamp;
 	private String updateUserid;
 	private Timestamp updateTimestamp;
-	
-	
+	private Map<String, AppSuppData> fields;
 
-	public HighLevelLand() {
+	public HighLevelPlan() {
 
+	}
+
+	public HighLevelPlan(Timestamp createTimestamp2, String createUserid) {
+		this.createTimestamp = createTimestamp2;
+		this.createUserid = createUserid;
 	}
 
 	public AppSuppData getName() {
@@ -49,12 +54,12 @@ public class HighLevelLand implements java.io.Serializable {
 		this.contractSignedDate = contractSignedDate;
 	}
 
-	public Integer getHllId() {
-		return hllId;
+	public Integer getHlpId() {
+		return hlpId;
 	}
 
-	public void setHllId(Integer hllId) {
-		this.hllId = hllId;
+	public void setHlpId(Integer hlpId) {
+		this.hlpId = hlpId;
 	}
 
 	public int getRowNumber() {
@@ -103,5 +108,13 @@ public class HighLevelLand implements java.io.Serializable {
 
 	public void setAccessClass(AccessClass accessClass) {
 		this.accessClass = accessClass;
+	}
+
+	public Map<String, AppSuppData> getFields() {
+		return fields;
+	}
+
+	public void setFields(Map<String, AppSuppData> fields) {
+		this.fields = fields;
 	}
 }

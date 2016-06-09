@@ -1,6 +1,7 @@
 package appsupp.module;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccessClass implements java.io.Serializable
@@ -19,7 +20,7 @@ public class AccessClass implements java.io.Serializable
 	private AppSuppData processFollowed;
 	private AppSuppData accessControlsRequired;
 
-	private List<HighLevelLand> highLevelLands;
+	private List<HighLevelPlan> highLevelPlans = new ArrayList<HighLevelPlan>();
 
 	private AppSuppData accessControlPreexistingAccess;
 	private AppSuppData accessControlOther;
@@ -31,6 +32,14 @@ public class AccessClass implements java.io.Serializable
 	private Timestamp createTimestamp;
 	private String updateUserid;
 	private Timestamp updateTimestamp;
+
+	public AccessClass() {
+	}
+
+	public AccessClass(Timestamp currentTimestamp, String defaultUser) {
+		this.createTimestamp = currentTimestamp;
+		this.createUserid = defaultUser;
+	}
 
 	public String getCreateUserid() {
 		return createUserid;
@@ -92,8 +101,7 @@ public class AccessClass implements java.io.Serializable
 		return variableConstructionTechniques;
 	}
 
-	public void setVariableConstructionTechniques(
-			AppSuppData variableConstructionTechniques) {
+	public void setVariableConstructionTechniques(AppSuppData variableConstructionTechniques) {
 		this.variableConstructionTechniques = variableConstructionTechniques;
 	}
 
@@ -113,20 +121,11 @@ public class AccessClass implements java.io.Serializable
 		this.accessControlsRequired = accessControlsRequired;
 	}
 
-	public List<HighLevelLand> getHighLevelLands() {
-		return highLevelLands;
-	}
-
-	public void setHighLevelLands(List<HighLevelLand> highLevelLands) {
-		this.highLevelLands = highLevelLands;
-	}
-
 	public AppSuppData getAccessControlPreexistingAccess() {
 		return accessControlPreexistingAccess;
 	}
 
-	public void setAccessControlPreexistingAccess(
-			AppSuppData accessControlPreexistingAccess) {
+	public void setAccessControlPreexistingAccess(AppSuppData accessControlPreexistingAccess) {
 		this.accessControlPreexistingAccess = accessControlPreexistingAccess;
 	}
 
@@ -142,8 +141,7 @@ public class AccessClass implements java.io.Serializable
 		return preaccessControlExistingLegalLocation;
 	}
 
-	public void setPreaccessControlExistingLegalLocation(
-			AppSuppData preaccessControlExistingLegalLocation) {
+	public void setPreaccessControlExistingLegalLocation(AppSuppData preaccessControlExistingLegalLocation) {
 		this.preaccessControlExistingLegalLocation = preaccessControlExistingLegalLocation;
 	}
 
@@ -151,8 +149,7 @@ public class AccessClass implements java.io.Serializable
 		return accessControlsOtherDescription;
 	}
 
-	public void setAccessControlsOtherDescription(
-			AppSuppData accessControlsOtherDescription) {
+	public void setAccessControlsOtherDescription(AppSuppData accessControlsOtherDescription) {
 		this.accessControlsOtherDescription = accessControlsOtherDescription;
 	}
 
@@ -160,9 +157,16 @@ public class AccessClass implements java.io.Serializable
 		return accessControlsAdditionalInfo;
 	}
 
-	public void setAccessControlsAdditionalInfo(
-			AppSuppData accessControlsAdditionalInfo) {
+	public void setAccessControlsAdditionalInfo(AppSuppData accessControlsAdditionalInfo) {
 		this.accessControlsAdditionalInfo = accessControlsAdditionalInfo;
+	}
+
+	public List<HighLevelPlan> getHighLevelPlans() {
+		return highLevelPlans;
+	}
+
+	public void setHighLevelPlans(List<HighLevelPlan> highLevelPlans) {
+		this.highLevelPlans = highLevelPlans;
 	}
 
 }

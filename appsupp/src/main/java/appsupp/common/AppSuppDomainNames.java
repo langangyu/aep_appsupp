@@ -1,4 +1,4 @@
-package appsupp.module.common;
+package appsupp.common;
 
 /**
  * Interface represents domain names defined for the 
@@ -87,5 +87,9 @@ public interface AppSuppDomainNames {
     
     // list of WATERBODY CLASSES  
     public static final String WATERBODY_CLASSES = "WATERBODY_CLASSES";
+
+	public static final String HIGH_LEVEL_PLAN = "HIGH_LEVEL_LAND";
+
+	public static final String STRING_DATA_TYPE = "STRING";
 }
 

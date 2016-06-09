@@ -26,6 +26,7 @@ public class DomainCode implements java.io.Serializable {
 	private BigDecimal domainCodeId;
 	private String code;
 	private String description;
+	private String dataType;
 	private Timestamp effectiveDate;
 	private Timestamp terminationDate;
 	private String createUserid;
@@ -167,5 +168,13 @@ public class DomainCode implements java.io.Serializable {
 		} else if (!getDomainCodeId().equals(other.getDomainCodeId()))
 			return false;
 		return true;
+	}
+
+	public String getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(String dataType) {
+		this.dataType = dataType;
 	}
 }

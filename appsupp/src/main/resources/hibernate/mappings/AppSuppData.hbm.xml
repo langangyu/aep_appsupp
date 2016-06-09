@@ -11,15 +11,22 @@
 			</generator>
 		</id>
 
-		<many-to-one name="domainCodeValue" class="appsupp.module.DomainCode"
-			fetch="select" update="false" insert="false">
-			<column name="DOMAIN_CODE_ID" precision="12" scale="0"
+		<many-to-one name="field" class="appsupp.module.DomainCode"
+			fetch="join">
+			<column name="DOMAIN_CODE_ID_FIELD" precision="12" scale="0"
 				not-null="true" />
+		</many-to-one>
+
+
+		<many-to-one name="domainCodeValue" class="appsupp.module.DomainCode"
+			fetch="select">
+			<column name="DOMAIN_CODE_ID_VALUE" precision="12" scale="0" />
 		</many-to-one>
 
 		<property name="stringValue" type="string">
 			<column name="STRING_VALUE" length="300" />
 		</property>
+
 		<property name="timestampValue" type="timestamp">
 			<column name="TIMESTAMP_VALUE" length="7" />
 		</property>
@@ -31,6 +38,7 @@
 		<property name="others" type="string">
 			<column name="OTHERS" length="300" />
 		</property>
+
 		<property name="label" type="string">
 			<column name="label" length="300" />
 		</property>
@@ -38,12 +46,15 @@
 		<property name="createUserid" type="string">
 			<column name="CREATE_USERID" length="30" not-null="true" />
 		</property>
+
 		<property name="createTimestamp" type="timestamp">
 			<column name="CREATE_TIMESTAMP" length="7" not-null="true" />
 		</property>
+
 		<property name="updateUserid" type="string">
 			<column name="UPDATE_USERID" length="30" />
 		</property>
+
 		<property name="updateTimestamp" type="timestamp">
 			<column name="UPDATE_TIMESTAMP" length="7" />
 		</property>

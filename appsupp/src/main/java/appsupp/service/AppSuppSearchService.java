@@ -6,11 +6,9 @@ import appsupp.common.ApplicationException;
 import appsupp.dao.AppSuppDao;
 import appsupp.module.ApplicationSupplement;
 
-public class AppSuppSearchService implements AppSuppServiceInterface,
-		java.io.Serializable {
+public class AppSuppSearchService implements AppSuppServiceInterface, java.io.Serializable {
 
-	private static Logger logger = Logger.getLogger(AppSuppSearchService.class
-			.getName());
+	private static Logger logger = Logger.getLogger(AppSuppSearchService.class.getName());
 	/**
 	 * 
 	 */
@@ -33,8 +31,7 @@ public class AppSuppSearchService implements AppSuppServiceInterface,
 	}
 
 	@Override
-	public boolean save(ApplicationSupplement appSuppBean)
-			throws ApplicationException {
+	public boolean save(ApplicationSupplement appSuppBean) throws ApplicationException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -48,12 +45,12 @@ public class AppSuppSearchService implements AppSuppServiceInterface,
 	@Override
 	public void addNewHighLevelLand(ApplicationSupplement appSuppBean) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addNewReservation(ApplicationSupplement appSuppBean) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -7,7 +7,7 @@
 		<id name="domainCodeId" type="big_decimal">
 			<column name="DOMAIN_CODE_ID" precision="22" scale="0" />
 			<generator class="sequence">
-				<param name="sequence">EDS.ASD_SEQ</param>
+				<param name="sequence">CHIEF_DOM.DOMAIN_NAME_SEQ</param>
 			</generator>
 		</id>
 		<property name="code" type="string">
@@ -22,6 +22,11 @@
 		<property name="terminationDate" type="timestamp">
 			<column name="TERMINATION_DATE" length="7" />
 		</property>
+
+		<property name="dataType" type="string">
+			<column name="DATA_TYPE" length="30" not-null="true" />
+		</property>
+
 		<property name="createUserid" type="string">
 			<column name="CREATE_USERID" length="30" not-null="true" />
 		</property>
@@ -36,7 +41,7 @@
 		</property>
 
 		<many-to-one name="domainName" class="appsupp.module.DomainName"
-			fetch="select" update="false" insert="false">
+			fetch="select">
 			<column name="DOMAIN_NAME_ID" precision="22" scale="0"
 				not-null="true" />
 		</many-to-one>

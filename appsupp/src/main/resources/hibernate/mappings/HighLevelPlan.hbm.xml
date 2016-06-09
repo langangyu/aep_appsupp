@@ -2,20 +2,15 @@
 <!DOCTYPE hibernate-mapping SYSTEM "classpath://org/hibernate/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 19, 2010 5:16:15 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-	<class name="appsupp.module.AccessClass" table="ACCESS_CLASS"
-		schema="eds">
-		<id name="accessClassId" type="integer">
-			<column name="ACCESS_CLASS_ID" precision="12" scale="0" />
+	<class name="appsupp.module.HighLevelPlan" table="HIGH_LEVEL_PLAN"
+		schema="EDS">
+		<id name="hlpId" type="integer">
+			<column name="HLP_ID" precision="12" scale="0" />
 			<generator class="sequence">
-				<param name="sequence">EDS.ACCESS_CLASS_SEQ</param>
+				<param name="sequence">EDS.HLP_SEQ</param>
 			</generator>
 		</id>
 
-		<many-to-one name="appSupp" class="appsupp.module.ApplicationSupplement"
-			fetch="select">
-			<column name="APP_SUPP_ID" precision="12" scale="0" not-null="true">
-			</column>
-		</many-to-one>
 
 		<property name="createUserid" type="string">
 			<column name="CREATE_USERID" length="30" not-null="true" />
@@ -30,11 +25,18 @@
 			<column name="UPDATE_TIMESTAMP" length="7" />
 		</property>
 
-		<bag name="highLevelPlans" inverse="true" cascade="all,delete-orphan">
-			<key>
-				<column name="ACCESS_CLASS_ID" precision="12" scale="0" not-null="true" />
-			</key>
-			<one-to-many class="appsupp.module.HighLevelPlan" />
-		</bag>
+		<many-to-one name="accessClass" class="appsupp.module.AccessClass"
+			fetch="select">
+			<column name="ACCESS_CLASS_ID" precision="12" scale="0"
+				not-null="true" />
+		</many-to-one>
+
+		<map name="fields" table="HIGH_LEVEL_PLAN_DATA" schema="EDS"
+			cascade="all">
+			<key column="HLP_ID"></key>
+			<index column="LABEL" type="string"></index>
+			<many-to-many class="appsupp.module.AppSuppData" column="ASD_ID" />
+		</map>
+
 	</class>
 </hibernate-mapping>

@@ -3,7 +3,6 @@ package appsupp.service;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -18,11 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import appsupp.App;
 import appsupp.module.AccessClass;
-import appsupp.module.AppSuppData;
 import appsupp.module.ApplicationSupplement;
 import appsupp.module.DomainCode;
 import appsupp.module.DomainName;
-import appsupp.module.HighLevelLand;
+import appsupp.module.HighLevelPlan;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/applicationContext-resources.xml" })
@@ -74,42 +72,47 @@ public class AppSuppServiceTest {
 
 		appSuppBean.setDomainCodeActivityType(new DomainCode(0, "LOC", "LOC"));
 		appSuppBean.setActivityType("LOC");
-		appSuppBean.setAccessClass(new AccessClass());
+		appSuppBean.setAccessClass(new AccessClass(createTimestamp, createUserid));
 		appSuppBean.getAccessClass().setAppSupp(appSuppBean);
 
-		appSuppBean.getAccessClass().setCreateTimestamp(createTimestamp);
-		appSuppBean.getAccessClass().setCreateUserid(createUserid);
+		HighLevelPlan highLevelPlan = new HighLevelPlan(createTimestamp, createUserid);
+		highLevelPlan.setAccessClass(appSuppBean.getAccessClass());
 
-		HighLevelLand highLevelLand = new HighLevelLand();
-		highLevelLand.setAccessClass(appSuppBean.getAccessClass());
-		highLevelLand.setCreateTimestamp(createTimestamp);
-		highLevelLand.setCreateUserid(createUserid);
+		// AppSuppData highLeveLandName = new AppSuppData("ABC land");
+		//
+		// highLeveLandName.setCreateUserid(createUserid);
+		// highLeveLandName.setCreateTimestamp(createTimestamp);
+		//
+		// highLevelLand.setName(highLeveLandName);
+		//
+		// highLevelLand.setDirection(new AppSuppData("NW"));
+		//
+		// highLevelLand.getDirection().setCreateUserid(createUserid);
+		// highLevelLand.getDirection().setCreateTimestamp(createTimestamp);
+		//
+		// highLevelLand.setContractSignedDate(new AppSuppData(new
+		// java.sql.Timestamp((new Date()).getTime())));
+		//
+		// highLevelLand.getContractSignedDate().setCreateUserid(createUserid);
+		// highLevelLand.getContractSignedDate().setCreateTimestamp(createTimestamp);
+		//
+		// highLeveLandName.setCreateUserid(createUserid);
+		// highLeveLandName.setCreateTimestamp(createTimestamp);
 
-		AppSuppData highLeveLandName = new AppSuppData("ABC land");
-
-		highLeveLandName.setCreateUserid(createUserid);
-		highLeveLandName.setCreateTimestamp(createTimestamp);
-
-		highLevelLand.setName(highLeveLandName);
-
-		highLevelLand.setDirection(new AppSuppData("NW"));
-
-		highLevelLand.getDirection().setCreateUserid(createUserid);
-		highLevelLand.getDirection().setCreateTimestamp(createTimestamp);
-
-		highLevelLand.setContractSignedDate(new AppSuppData(new java.sql.Timestamp((new Date()).getTime())));
-
-		highLevelLand.getContractSignedDate().setCreateUserid(createUserid);
-		highLevelLand.getContractSignedDate().setCreateTimestamp(createTimestamp);
-
-		highLeveLandName.setCreateUserid(createUserid);
-		highLeveLandName.setCreateTimestamp(createTimestamp);
-
-		HighLevelLand[] hlls = new HighLevelLand[] { highLevelLand };
-
-		appSuppBean.getAccessClass().setHighLevelLands(java.util.Arrays.asList(hlls));
+		this.appSuppService.init(appSuppBean);
 
 		this.appSuppService.submit(appSuppBean);
+
+	}
+
+	@Test
+	@Transactional
+	public void testGetAppSupp() {
+
+		Integer appSuppId = new Integer(6);
+
+		ApplicationSupplement appSupp = this.appSuppService.getApplicationSupplement(appSuppId);
+		assertEquals(3, appSupp.getAccessClass().getHighLevelPlans().get(0).getFields().size());
 
 	}
 

@@ -41,7 +41,7 @@
 				<value>hibernate/mappings/ApplicationSupplement.hbm.xml</value>
 				<value>hibernate/mappings/AccessClass.hbm.xml</value>
 				<value>hibernate/mappings/AppSuppData.hbm.xml</value>
-				<value>hibernate/mappings/HighLevelLand.hbm.xml</value>
+				<value>hibernate/mappings/HighLevelPlan.hbm.xml</value>
 			</list>
 		</property>
 
