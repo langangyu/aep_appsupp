@@ -39,8 +39,7 @@
 				<value>hibernate/mappings/DomainCodes.hbm.xml</value>
 				<value>hibernate/mappings/DomainNames.hbm.xml</value>
 				<value>hibernate/mappings/ApplicationSupplement.hbm.xml</value>
-				<value>hibernate/mappings/AccessClass.hbm.xml</value>
-				<value>hibernate/mappings/AppSuppData.hbm.xml</value>
+				<value>hibernate/mappings/DataItem.hbm.xml</value>
 				<value>hibernate/mappings/HighLevelPlan.hbm.xml</value>
 			</list>
 		</property>

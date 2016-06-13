@@ -42,15 +42,22 @@ public class AppSuppSearchService implements AppSuppServiceInterface, java.io.Se
 		return false;
 	}
 
+ 
 	@Override
-	public void addNewHighLevelLand(ApplicationSupplement appSuppBean) {
+	public void init(ApplicationSupplement appSuppBean) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void addNewReservation(ApplicationSupplement appSuppBean) {
+	public ApplicationSupplement getApplicationSupplement(Integer appSuppId) {
 		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public void addNewHighLevelLand(ApplicationSupplement appSuppBean) {
+		// TODO Auto-generated method stub
+		
 	}
 }

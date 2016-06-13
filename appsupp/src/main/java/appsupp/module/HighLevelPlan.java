@@ -3,55 +3,28 @@ package appsupp.module;
 import java.sql.Timestamp;
 import java.util.Map;
 
-public class HighLevelPlan implements java.io.Serializable {
+public class HighLevelPlan extends AbstractTimestamp implements java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6695349863456927137L;
 	private Integer hlpId;
-	private AccessClass accessClass;
-	private AppSuppData name;
-	private AppSuppData direction;
-	private AppSuppData contractSignedDate;
+	private ApplicationSupplement applicationSupplement;
+
 	private int rowNumber;
-	private String createUserid;
-	private Timestamp createTimestamp;
-	private String updateUserid;
-	private Timestamp updateTimestamp;
-	private Map<String, AppSuppData> fields;
+	private Map<String, DataItem> fields;
+
+	private static final String NAME = "HighLevelPlan.name";
+	private static final String DIRECTION = "HighLevelPlan.direction";
+	private static final String CONTRACT_SIGNED_DATE = "HighLevelPlan.contractSignedDate";
 
 	public HighLevelPlan() {
-
 	}
 
 	public HighLevelPlan(Timestamp createTimestamp2, String createUserid) {
-		this.createTimestamp = createTimestamp2;
-		this.createUserid = createUserid;
-	}
-
-	public AppSuppData getName() {
-		return name;
-	}
-
-	public void setName(AppSuppData name) {
-		this.name = name;
-	}
-
-	public AppSuppData getDirection() {
-		return direction;
-	}
-
-	public void setDirection(AppSuppData direction) {
-		this.direction = direction;
-	}
-
-	public AppSuppData getContractSignedDate() {
-		return contractSignedDate;
-	}
-
-	public void setContractSignedDate(AppSuppData contractSignedDate) {
-		this.contractSignedDate = contractSignedDate;
+		this.setCreateTimestamp(createTimestamp2);
+		this.setCreateUserid(createUserid);
 	}
 
 	public Integer getHlpId() {
@@ -70,51 +43,44 @@ public class HighLevelPlan implements java.io.Serializable {
 		this.rowNumber = rowNumber;
 	}
 
-	public String getCreateUserid() {
-		return createUserid;
-	}
-
-	public void setCreateUserid(String createUserid) {
-		this.createUserid = createUserid;
-	}
-
-	public Timestamp getCreateTimestamp() {
-		return createTimestamp;
-	}
-
-	public void setCreateTimestamp(Timestamp createTimestamp) {
-		this.createTimestamp = createTimestamp;
-	}
-
-	public String getUpdateUserid() {
-		return updateUserid;
-	}
-
-	public void setUpdateUserid(String updateUserid) {
-		this.updateUserid = updateUserid;
-	}
-
-	public Timestamp getUpdateTimestamp() {
-		return updateTimestamp;
-	}
-
-	public void setUpdateTimestamp(Timestamp updateTimestamp) {
-		this.updateTimestamp = updateTimestamp;
-	}
-
-	public AccessClass getAccessClass() {
-		return accessClass;
-	}
-
-	public void setAccessClass(AccessClass accessClass) {
-		this.accessClass = accessClass;
-	}
-
-	public Map<String, AppSuppData> getFields() {
+	public Map<String, DataItem> getFields() {
 		return fields;
 	}
 
-	public void setFields(Map<String, AppSuppData> fields) {
+	public void setFields(Map<String, DataItem> fields) {
 		this.fields = fields;
 	}
+
+	public ApplicationSupplement getApplicationSupplement() {
+		return applicationSupplement;
+	}
+
+	public void setApplicationSupplement(ApplicationSupplement applicationSupplement) {
+		this.applicationSupplement = applicationSupplement;
+	}
+
+	public String getName() {
+		return this.getFields().get(Messages.getString(NAME)).getStringValue();
+	}
+
+	public void setName(String name) {
+		this.getFields().get(Messages.getString(NAME)).setStringValue(name);
+	}
+
+	public String getDirection() {
+		return this.getFields().get(Messages.getString(DIRECTION)).getStringValue();
+	}
+
+	public void setDirection(String direction) {
+		this.getFields().get(Messages.getString(NAME)).setStringValue(direction);
+	}
+
+	public Timestamp getContractSignedDate() {
+		return this.getFields().get(Messages.getString(CONTRACT_SIGNED_DATE)).getTimestampValue();
+	}
+
+	public void setContractSignedDate(Timestamp contractSignedDate) {
+		this.getFields().get(Messages.getString(NAME)).setTimestampValue(contractSignedDate);
+	}
+
 }

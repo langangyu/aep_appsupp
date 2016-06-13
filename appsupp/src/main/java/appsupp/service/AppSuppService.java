@@ -17,8 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import appsupp.common.ApplicationException;
 import appsupp.dao.AppSuppDao;
-import appsupp.module.AccessClass;
-import appsupp.module.AppSuppData;
+import appsupp.module.DataItem;
 import appsupp.module.ApplicationSupplement;
 import appsupp.module.DomainCode;
 import appsupp.module.HighLevelPlan;
@@ -83,9 +82,12 @@ public class AppSuppService implements AppSuppServiceInterface, java.io.Serializ
 	}
 
 	public void init(ApplicationSupplement appSupp) {
+		this.addNewHighLevelLand(appSupp);
+		
+		
 		this.initAccessClass(appSupp);
 		this.initSupplmentTypes(appSupp);
-
+		
 		this.initApplicationSupplmentTypes(appSupp);
 		this.initActivityTypes(appSupp);
 		this.initPurposeTypes(appSupp);
@@ -118,12 +120,6 @@ public class AppSuppService implements AppSuppServiceInterface, java.io.Serializ
 	}
 
 	private void initAccessClass(ApplicationSupplement appSupp) {
-		AccessClass accessClass = new AccessClass(this.getCurrentTimestamp(), DEFAULT_USER);
-
-		appSupp.setAccessClass(accessClass);
-		accessClass.setAppSupp(appSupp);
-
-		this.addNewHighLevelLand(appSupp.getAccessClass());
 
 	}
 
@@ -269,23 +265,25 @@ public class AppSuppService implements AppSuppServiceInterface, java.io.Serializ
 		appSupp.setReservations(reservations);
 	}
 
-	public void addNewHighLevelLand(AccessClass accessClass) {
+	public void addNewHighLevelLand(ApplicationSupplement applicationSupplement) {
 
-		HighLevelPlan highLevelPlan = createNewHighLevelPlan(accessClass.getAppSupp());
-		highLevelPlan.setAccessClass(accessClass);
+		HighLevelPlan highLevelPlan = createNewHighLevelPlan(applicationSupplement);
+
 		highLevelPlan.setFields(this.getFields(AppSuppDomainNames.HIGH_LEVEL_PLAN));
-
-		accessClass.getHighLevelPlans().add(highLevelPlan);
+		highLevelPlan.setApplicationSupplement(applicationSupplement);
+		applicationSupplement.getHighLevelPlans().add(highLevelPlan);
 	}
 
-	private Map<String, AppSuppData> getFields(String highLevelPlan) {
+	private Map<String, DataItem> getFields(String highLevelPlan) {
 		List<DomainCode> domainCodes = this.appSuppDao.getDomainCodesByDomainName(highLevelPlan);
-		Map<String, AppSuppData> fields = new HashMap<String, AppSuppData>();
+		Map<String, DataItem> fields = new HashMap<String, DataItem>();
 		for (DomainCode domainCode : domainCodes) {
-			AppSuppData appSuppData = new AppSuppData(this.getCurrentTimestamp(), DEFAULT_USER);
+			DataItem appSuppData = new DataItem(this.getCurrentTimestamp(), DEFAULT_USER);
+
 			appSuppData.setDescription(domainCode.getDescription());
 			appSuppData.setLabel(domainCode.getCode());
 			appSuppData.setField(domainCode);
+			appSuppData.setStringValue("testing...");
 			fields.put(domainCode.getCode(), appSuppData);
 
 		}
@@ -294,26 +292,18 @@ public class AppSuppService implements AppSuppServiceInterface, java.io.Serializ
 	}
 
 	private HighLevelPlan createNewHighLevelPlan(ApplicationSupplement appSuppBean) {
-		HighLevelPlan HighLevelPlan = new HighLevelPlan();
+		HighLevelPlan highLevelPlan = new HighLevelPlan();
 
 		Timestamp currentTime = this.getCurrentTimestamp();
-		HighLevelPlan.setCreateTimestamp(currentTime);
-		HighLevelPlan.setCreateUserid(appSuppBean.getCreateUserid());
-		HighLevelPlan.setRowNumber(appSuppBean.getAccessClass().getHighLevelPlans().size());
+		highLevelPlan.setCreateTimestamp(currentTime);
+		highLevelPlan.setCreateUserid(appSuppBean.getCreateUserid());
+		highLevelPlan.setRowNumber(appSuppBean.getHighLevelPlans().size());
 
-		return HighLevelPlan;
+		return highLevelPlan;
 	}
 
 	public void addNewReservation(ApplicationSupplement appSuppBean) {
 
-		Reservation reservation = new Reservation();
-
-		Timestamp currentTime = this.getCurrentTimestamp();
-		reservation.setCreateTimestamp(currentTime);
-		reservation.setCreateUserid(appSuppBean.getCreateUserid());
-		reservation.setRowNumber(appSuppBean.getReservations().size());
-
-		appSuppBean.getReservations().add(reservation);
 	}
 
 	protected Timestamp getCurrentTimestamp() {

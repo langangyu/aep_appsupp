@@ -20,9 +20,6 @@
 			<column name="FORM_DATE" length="7" not-null="true" />
 		</property>
 
-		<one-to-one name="accessClass" property-ref="appSupp"
-			cascade="all" />
-
 		<property name="createUserid" type="string">
 			<column name="CREATE_USERID" length="30" not-null="true" />
 		</property>
@@ -35,6 +32,22 @@
 		<property name="updateTimestamp" type="timestamp">
 			<column name="UPDATE_TIMESTAMP" length="7" />
 		</property>
+
+		<bag name="highLevelPlans" inverse="true" cascade="all,delete-orphan">
+			<key>
+				<column name="APP_SUPP_ID_ID" precision="12" scale="0"
+					not-null="true" />
+			</key>
+			<one-to-many class="appsupp.module.HighLevelPlan" />
+		</bag>
+
+		<map name="fields" table="DATA_ITEM" schema="EDS"
+			cascade="all">
+			<key column="APP_SUPP_ID"></key>
+			<index column="LABEL" type="string"></index>
+			<many-to-many class="appsupp.module.DataItem" column="DATA_ITEM_ID" />
+		</map>
+
 
 	</class>
 </hibernate-mapping>

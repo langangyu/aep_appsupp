@@ -3,8 +3,12 @@ package appsupp.service;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Timestamp;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +20,8 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import appsupp.App;
-import appsupp.module.AccessClass;
 import appsupp.module.ApplicationSupplement;
+import appsupp.module.DataItem;
 import appsupp.module.DomainCode;
 import appsupp.module.DomainName;
 import appsupp.module.HighLevelPlan;
@@ -27,6 +31,10 @@ import appsupp.module.HighLevelPlan;
 @TransactionConfiguration(defaultRollback = false)
 public class AppSuppServiceTest {
 
+	private static Logger logger = Logger.getLogger(AppSuppServiceTest.class.getName());
+	/**
+	 * 
+	 */
 	@Autowired
 	AppSuppServiceInterface appSuppService;
 
@@ -72,33 +80,10 @@ public class AppSuppServiceTest {
 
 		appSuppBean.setDomainCodeActivityType(new DomainCode(0, "LOC", "LOC"));
 		appSuppBean.setActivityType("LOC");
-		appSuppBean.setAccessClass(new AccessClass(createTimestamp, createUserid));
-		appSuppBean.getAccessClass().setAppSupp(appSuppBean);
 
-		HighLevelPlan highLevelPlan = new HighLevelPlan(createTimestamp, createUserid);
-		highLevelPlan.setAccessClass(appSuppBean.getAccessClass());
-
-		// AppSuppData highLeveLandName = new AppSuppData("ABC land");
-		//
-		// highLeveLandName.setCreateUserid(createUserid);
-		// highLeveLandName.setCreateTimestamp(createTimestamp);
-		//
-		// highLevelLand.setName(highLeveLandName);
-		//
-		// highLevelLand.setDirection(new AppSuppData("NW"));
-		//
-		// highLevelLand.getDirection().setCreateUserid(createUserid);
-		// highLevelLand.getDirection().setCreateTimestamp(createTimestamp);
-		//
-		// highLevelLand.setContractSignedDate(new AppSuppData(new
-		// java.sql.Timestamp((new Date()).getTime())));
-		//
-		// highLevelLand.getContractSignedDate().setCreateUserid(createUserid);
-		// highLevelLand.getContractSignedDate().setCreateTimestamp(createTimestamp);
-		//
-		// highLeveLandName.setCreateUserid(createUserid);
-		// highLeveLandName.setCreateTimestamp(createTimestamp);
-
+//		HighLevelPlan highLevelPlan = new HighLevelPlan(createTimestamp, createUserid);
+//		highLevelPlan.setApplicationSupplement(appSuppBean);
+// 
 		this.appSuppService.init(appSuppBean);
 
 		this.appSuppService.submit(appSuppBean);
@@ -112,8 +97,64 @@ public class AppSuppServiceTest {
 		Integer appSuppId = new Integer(6);
 
 		ApplicationSupplement appSupp = this.appSuppService.getApplicationSupplement(appSuppId);
-		assertEquals(3, appSupp.getAccessClass().getHighLevelPlans().get(0).getFields().size());
+		assertEquals(3, appSupp.getHighLevelPlans().get(0).getFields().size());
 
+	}
+
+	@Test
+	@Transactional
+	public void testModifyAppSupp() {
+
+		Integer appSuppId = new Integer(5);
+
+		ApplicationSupplement appSupp = this.appSuppService.getApplicationSupplement(appSuppId);
+		Map<String, DataItem> fields = appSupp.getHighLevelPlans().get(0).getFields();
+
+		Set<Map.Entry<String, DataItem>> set = fields.entrySet();
+		Iterator<Map.Entry<String, DataItem>> iteratorEntry = set.iterator();
+		while (iteratorEntry.hasNext()) {
+			Map.Entry<String, DataItem> entry = (Map.Entry<String, DataItem>) iteratorEntry.next();
+			logger.debug("label:" + entry.getKey());
+
+			DataItem appSuppData = entry.getValue();
+
+			logger.debug("appSuppData:" + appSuppData.getStringValue());
+			if (entry.getKey().equals("direction"))
+				iteratorEntry.remove();
+
+		}
+
+		this.appSuppService.save(appSupp);
+	}
+
+	@Test
+	@Transactional
+	public void testModifyAppSuppData() {
+
+		Integer appSuppId = new Integer(6);
+
+		ApplicationSupplement appSupp = this.appSuppService.getApplicationSupplement(appSuppId);
+
+		HighLevelPlan highLevelPlan = appSupp.getHighLevelPlans().get(0);
+		Map<String, DataItem> fields = highLevelPlan.getFields();
+
+		Set<Map.Entry<String, DataItem>> set = fields.entrySet();
+		Iterator<Map.Entry<String, DataItem>> iteratorEntry = set.iterator();
+		while (iteratorEntry.hasNext()) {
+			Map.Entry<String, DataItem> entry = (Map.Entry<String, DataItem>) iteratorEntry.next();
+			logger.debug("label:" + entry.getKey());
+
+			DataItem appSuppData = entry.getValue();
+
+			logger.debug("appSuppData:" + appSuppData.getStringValue());
+			if (entry.getKey().equals("direction"))
+				highLevelPlan.setDirection(appSuppData.getStringValue());
+
+		}
+
+		highLevelPlan.setDirection("testing again...");
+
+		this.appSuppService.save(appSupp);
 	}
 
 	private Timestamp getCurrentTimestamp() {

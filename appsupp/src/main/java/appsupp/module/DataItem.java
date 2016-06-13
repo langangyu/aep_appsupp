@@ -2,19 +2,22 @@ package appsupp.module;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class AppSuppData implements java.io.Serializable {
+public class DataItem implements java.io.Serializable {
 
 	private static final long serialVersionUID = -87116268751536996L;
 	private Integer asdId;
-	
+
 	private String label;
 	private DomainCode field;
 	private DomainCode domainCodeValue;
 	private String stringValue;
 	private Timestamp timestampValue;
 	private Boolean booleanValue;
+	private Map<String, DataItem> subAppSuppData = new HashMap<String,DataItem>();
 	private String others;
 
 	private boolean isOtherSelected;
@@ -27,19 +30,19 @@ public class AppSuppData implements java.io.Serializable {
 	private String updateUserid;
 	private Timestamp updateTimestamp;
 
-	public AppSuppData() {
+	public DataItem() {
 
 	}
 
-	public AppSuppData(String stringValue) {
+	public DataItem(String stringValue) {
 		this.setStringValue(stringValue);
 	}
 
-	public AppSuppData(Timestamp datetime) {
+	public DataItem(Timestamp datetime) {
 		this.setTimestampValue(datetime);
 	}
 
-	public AppSuppData(Timestamp currentTimestamp, String defaultUser) {
+	public DataItem(Timestamp currentTimestamp, String defaultUser) {
 		this.createTimestamp = currentTimestamp;
 		this.createUserid = defaultUser;
 	}
@@ -170,6 +173,14 @@ public class AppSuppData implements java.io.Serializable {
 
 	public void setField(DomainCode field) {
 		this.field = field;
+	}
+
+	public Map<String, DataItem> getSubAppSuppData() {
+		return subAppSuppData;
+	}
+
+	public void setSubAppSuppData(Map<String, DataItem> subAppSuppData) {
+		this.subAppSuppData = subAppSuppData;
 	}
 
 

@@ -2,7 +2,6 @@ package appsupp.service;
 
 import appsupp.common.ApplicationException;
 import appsupp.dao.AppSuppDao;
-import appsupp.module.AccessClass;
 import appsupp.module.ApplicationSupplement;
 
 public interface AppSuppServiceInterface {
@@ -16,7 +15,7 @@ public interface AppSuppServiceInterface {
 
 	public void setAppSuppDao(AppSuppDao appSuppDao);
 
-	public void addNewHighLevelLand(AccessClass accessClass);
+	public void addNewHighLevelLand(ApplicationSupplement appSuppBean);
 
 	
 	

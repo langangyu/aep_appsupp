@@ -25,17 +25,16 @@
 			<column name="UPDATE_TIMESTAMP" length="7" />
 		</property>
 
-		<many-to-one name="accessClass" class="appsupp.module.AccessClass"
+		<many-to-one name="applicationSupplement" class="appsupp.module.ApplicationSupplement"
 			fetch="select">
-			<column name="ACCESS_CLASS_ID" precision="12" scale="0"
-				not-null="true" />
+			<column name="APP_SUPP_ID" precision="12" scale="0" not-null="true" />
 		</many-to-one>
 
 		<map name="fields" table="HIGH_LEVEL_PLAN_DATA" schema="EDS"
 			cascade="all">
 			<key column="HLP_ID"></key>
 			<index column="LABEL" type="string"></index>
-			<many-to-many class="appsupp.module.AppSuppData" column="ASD_ID" />
+			<many-to-many class="appsupp.module.DataItem" column="DATA_ITEM_ID" />
 		</map>
 
 	</class>

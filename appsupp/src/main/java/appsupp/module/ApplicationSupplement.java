@@ -1,45 +1,49 @@
 package appsupp.module;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.model.SelectItem;
 
-public class ApplicationSupplement implements java.io.Serializable {
+public class ApplicationSupplement extends AbstractTimestamp implements java.io.Serializable {
+
+	private static final String MERCHANTABLE_TIMBER = "ApplicationSupplement.merchantableTimber";
+	private static final String APPLICATION_SUPPLMENT_TYPE = "ApplicationSupplement.applicationSupplmentType";
 
 	private static final long serialVersionUID = 8596662541307991172L;
+
 	private Integer appSuppId;
 	private String supplmentType;
 	private Timestamp formDate;
 	private String formName;
 
 	private String activityType;
-	
-	//Section 1 
-	private AccessClass accessClass;
-	private SiteSensitivity siteSensitivity;
-	
-	private String createUserid;
-	private Timestamp createTimestamp;
-	private String updateUserid;
-	private Timestamp updateTimestamp;
+
+	// Section 1
+	// private AccessClass accessClass;
+	// private SiteSensitivity siteSensitivity;
 
 	// NOT MAPPED
 	// FOR testing
 	private List<DomainCode> listOfQuarterTypes;
 	private DomainCode domainCodeQuarter;
 	private boolean govApprovedHighLeveLand;
-	
+
 	// common start
-	private String applicationSupplmentType;
+	// private String applicationSupplmentType;
 	private Timestamp appSuppDate;
 	private String projectName;
 	private String latNumber;
 	private DomainCode domainCodeActivityType;
 	private DomainCode domainCodePurposeType;
-	
+
+	private Map<String, DataItem> fields = new HashMap<String, DataItem>();
+
 	// Common - Section A
-	private Boolean merchantableTimber;
+	// private Boolean merchantableTimber;
 	private String methodROWDescription;
 	private String[] selectedBrushDisposal = new String[0];
 	private String disposalOtherDescription;
@@ -53,7 +57,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	private Timestamp historicalResourcesSearchCompletedDate;
 	private DomainCode domainCodeHistoricalResourceValue;
 	private Timestamp dateApplicationSubmitted;
-	
+
 	// Access - Section A
 	private DomainCode domainCodeRoadClass;
 	private Boolean variableConstructionTechniques;
@@ -66,6 +70,8 @@ public class ApplicationSupplement implements java.io.Serializable {
 	private String accessControlsOtherDescription;
 	private String accessControlsAdditionalInfo;
 
+	private List<HighLevelPlan> highLevelPlans = new ArrayList<HighLevelPlan>();
+
 	// Section B
 	private Boolean wildlifeSurveyRequired;
 	private Boolean sensitiveSpeciesIdentified;
@@ -75,11 +81,11 @@ public class ApplicationSupplement implements java.io.Serializable {
 
 	// Section C
 	private List<IncidentalActivity> incidentalActivities;
-	
+
 	// Section D
 	private Boolean watercoursesCrossedByVehicles;
 	private List<WatercourseCrossing> watercourseCrossings;
-	
+
 	// Pipeline - Section A
 	private Boolean multiPipeInstallation;
 	private String pipeOutsideDiameter;
@@ -95,28 +101,28 @@ public class ApplicationSupplement implements java.io.Serializable {
 	private DomainCode domainCodeFlareRequirements;
 	private DomainCode domainCodeDrillingWasteHandling;
 	private String drillingWasteHandlingDescription;
-	
+
 	// for the screen drop-down lists for AppSupp
 	private List<SelectItem> listOfSupplmentTypes;
 	private List<SelectItem> listOfApplicationSupplmentTypes;
 	private List<DomainCode> listOfActivityTypes;
 	private List<DomainCode> listOfPurposeTypes;
-	
+
 	// Access - Section A
 	private List<DomainCode> listOfRoadClasses;
 	private List<DomainCode> listOfAccessControls;
-	
+
 	// Pipeline - Section A
 	private List<DomainCode> listOfPipelineInstallations;
 	private List<DomainCode> listOfTopsoilHandlingAffectedAreas;
-	
+
 	// SiteInstalls - Section A
 	private List<DomainCode> listOfWellProducts;
 	private List<DomainCode> listOfSiteRequirements;
 	private List<DomainCode> listOfElevations;
 	private List<DomainCode> listOfFlareRequirements;
 	private List<DomainCode> listOfDrillingWasteHandling;
-	
+
 	// Common - Section A
 	private List<DomainCode> listOfBrushDisposal;
 	private List<DomainCode> listOfTopsoilHandlingMethods;
@@ -125,13 +131,13 @@ public class ApplicationSupplement implements java.io.Serializable {
 	private List<DomainCode> listOfReservationTableRestrictionCodes;
 	private List<DomainCode> listOfHigherLevelPlanDirections;
 	private List<DomainCode> listOfHistoricalResourceValues;
-	
+
 	// Common - Section B
 	private List<DomainCode> listOfSensitiveSpecies;
-	
+
 	// Common - Section C
 	private List<DomainCode> listOfPurposeActivityTypes;
-	
+
 	// Common - Section D
 	private List<DomainCode> listOfInitialCrossingMethods;
 	private List<DomainCode> listOfCulvertBridgeSizes;
@@ -140,7 +146,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	private List<DomainCode> listOfWaterbodyClasses;
 
 	public ApplicationSupplement() {
-		
+
 	}
 
 	public ApplicationSupplement(String formName) {
@@ -179,38 +185,6 @@ public class ApplicationSupplement implements java.io.Serializable {
 		this.appSuppId = appSuppId;
 	}
 
-	public String getCreateUserid() {
-		return createUserid;
-	}
-
-	public void setCreateUserid(String createUserid) {
-		this.createUserid = createUserid;
-	}
-
-	public Timestamp getCreateTimestamp() {
-		return createTimestamp;
-	}
-
-	public void setCreateTimestamp(Timestamp createTimestamp) {
-		this.createTimestamp = createTimestamp;
-	}
-
-	public String getUpdateUserid() {
-		return updateUserid;
-	}
-
-	public void setUpdateUserid(String updateUserid) {
-		this.updateUserid = updateUserid;
-	}
-
-	public Timestamp getUpdateTimestamp() {
-		return updateTimestamp;
-	}
-
-	public void setUpdateTimestamp(Timestamp updateTimestamp) {
-		this.updateTimestamp = updateTimestamp;
-	}
-
 	public DomainCode getDomainCodeQuarter() {
 		return domainCodeQuarter;
 	}
@@ -234,7 +208,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setGovApprovedHighLeveLand(boolean govApprovedHighLeveLand) {
 		this.govApprovedHighLeveLand = govApprovedHighLeveLand;
 	}
-	
+
 	public DomainCode getDomainCodeActivityType() {
 		return domainCodeActivityType;
 	}
@@ -242,15 +216,18 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setDomainCodeActivityType(DomainCode domainCodeActivityType) {
 		this.domainCodeActivityType = domainCodeActivityType;
 	}
-	
+
 	public String getApplicationSupplmentType() {
-		return applicationSupplmentType;
+		return this.getFields().get(Messages.getString(APPLICATION_SUPPLMENT_TYPE)) // $NON-NLS-1$
+				.getStringValue();
+
 	}
 
 	public void setApplicationSupplmentType(String applicationSupplmentType) {
-		this.applicationSupplmentType = applicationSupplmentType;
+		this.getFields().get(Messages.getString(APPLICATION_SUPPLMENT_TYPE)) // $NON-NLS-1$
+				.setStringValue(applicationSupplmentType);
 	}
-	
+
 	public Timestamp getAppSuppDate() {
 		return appSuppDate;
 	}
@@ -284,11 +261,11 @@ public class ApplicationSupplement implements java.io.Serializable {
 	}
 
 	public Boolean getMerchantableTimber() {
-		return merchantableTimber;
+		return this.getFields().get(Messages.getString(MERCHANTABLE_TIMBER)).getBooleanValue(); // $NON-NLS-1$
 	}
 
 	public void setMerchantableTimber(Boolean merchantableTimber) {
-		this.merchantableTimber = merchantableTimber;
+		this.getFields().get(Messages.getString(MERCHANTABLE_TIMBER)).setBooleanValue(merchantableTimber);
 	}
 
 	public String getMethodROWDescription() {
@@ -363,7 +340,6 @@ public class ApplicationSupplement implements java.io.Serializable {
 		this.higherLevelPlansIdentified = higherLevelPlansIdentified;
 	}
 
-
 	public Timestamp getHistoricalResourcesSearchCompletedDate() {
 		return historicalResourcesSearchCompletedDate;
 	}
@@ -427,7 +403,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setSelectedAccessControls(String[] selectedAccessControls) {
 		this.selectedAccessControls = selectedAccessControls;
 	}
-	
+
 	public boolean isAccessControlPreexistingAccess() {
 		return accessControlPreexistingAccess;
 	}
@@ -499,7 +475,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setOtherSensitiveSpecies(Boolean otherSensitiveSpecies) {
 		this.otherSensitiveSpecies = otherSensitiveSpecies;
 	}
-	
+
 	public String getOtherSensitiveSpeciesDescription() {
 		return otherSensitiveSpeciesDescription;
 	}
@@ -627,7 +603,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setDrillingWasteHandlingDescription(String drillingWasteHandlingDescription) {
 		this.drillingWasteHandlingDescription = drillingWasteHandlingDescription;
 	}
-	
+
 	public List<SelectItem> getListOfSupplmentTypes() {
 		return listOfSupplmentTypes;
 	}
@@ -635,7 +611,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setListOfSupplmentTypes(List<SelectItem> listOfSupplmentTypes) {
 		this.listOfSupplmentTypes = listOfSupplmentTypes;
 	}
-	
+
 	public List<SelectItem> getListOfApplicationSupplmentTypes() {
 		return listOfApplicationSupplmentTypes;
 	}
@@ -643,7 +619,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setListOfApplicationSupplmentTypes(List<SelectItem> listOfApplicationSupplmentTypes) {
 		this.listOfApplicationSupplmentTypes = listOfApplicationSupplmentTypes;
 	}
-	
+
 	public List<DomainCode> getListOfActivityTypes() {
 		return listOfActivityTypes;
 	}
@@ -651,7 +627,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setListOfActivityTypes(List<DomainCode> listOfActivityTypes) {
 		this.listOfActivityTypes = listOfActivityTypes;
 	}
-	
+
 	public List<DomainCode> getListOfPurposeTypes() {
 		return listOfPurposeTypes;
 	}
@@ -659,7 +635,7 @@ public class ApplicationSupplement implements java.io.Serializable {
 	public void setListOfPurposeTypes(List<DomainCode> listOfPurposeTypes) {
 		this.listOfPurposeTypes = listOfPurposeTypes;
 	}
-	
+
 	public List<DomainCode> getListOfRoadClasses() {
 		return listOfRoadClasses;
 	}
@@ -852,19 +828,21 @@ public class ApplicationSupplement implements java.io.Serializable {
 		this.activityType = activityType;
 	}
 
-	public AccessClass getAccessClass() {
-		return accessClass;
+	public Map<String, DataItem> getFields() {
+		return fields;
 	}
 
-	public void setAccessClass(AccessClass accessClass) {
-		this.accessClass = accessClass;
+	public void setFields(Map<String, DataItem> fields) {
+		this.fields = fields;
 	}
 
-	public SiteSensitivity getSiteSensitivity() {
-		return siteSensitivity;
+	public List<HighLevelPlan> getHighLevelPlans() {
+		return this.highLevelPlans;
+
 	}
 
-	public void setSiteSensitivity(SiteSensitivity siteSensitivity) {
-		this.siteSensitivity = siteSensitivity;
+	public void setHighLevelPlans(List<HighLevelPlan> highLevelPlans) {
+		this.highLevelPlans = highLevelPlans;
+
 	}
 }
