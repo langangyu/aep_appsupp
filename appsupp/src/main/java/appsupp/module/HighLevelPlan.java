@@ -72,7 +72,7 @@ public class HighLevelPlan extends AbstractTimestamp implements java.io.Serializ
 	}
 
 	public void setDirection(String direction) {
-		this.getFields().get(Messages.getString(NAME)).setStringValue(direction);
+		this.getFields().get(Messages.getString(DIRECTION)).setStringValue(direction);
 	}
 
 	public Timestamp getContractSignedDate() {

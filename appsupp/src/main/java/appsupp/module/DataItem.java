@@ -9,7 +9,7 @@ import java.util.Map;
 public class DataItem implements java.io.Serializable {
 
 	private static final long serialVersionUID = -87116268751536996L;
-	private Integer asdId;
+	private Integer dataItemId;
 
 	private String label;
 	private DomainCode field;
@@ -77,14 +77,6 @@ public class DataItem implements java.io.Serializable {
 
 	public void setUpdateTimestamp(Timestamp updateTimestamp) {
 		this.updateTimestamp = updateTimestamp;
-	}
-
-	public Integer getAsdId() {
-		return asdId;
-	}
-
-	public void setAsdId(Integer asdId) {
-		this.asdId = asdId;
 	}
 
 	public DomainCode getDomainCodeValue() {
@@ -181,6 +173,14 @@ public class DataItem implements java.io.Serializable {
 
 	public void setSubAppSuppData(Map<String, DataItem> subAppSuppData) {
 		this.subAppSuppData = subAppSuppData;
+	}
+
+	public Integer getDataItemId() {
+		return dataItemId;
+	}
+
+	public void setDataItemId(Integer dataItemId) {
+		this.dataItemId = dataItemId;
 	}
 
 

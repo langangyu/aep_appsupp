@@ -35,16 +35,14 @@
 
 		<bag name="highLevelPlans" inverse="true" cascade="all,delete-orphan">
 			<key>
-				<column name="APP_SUPP_ID_ID" precision="12" scale="0"
-					not-null="true" />
+				<column name="APP_SUPP_ID" precision="12" scale="0" not-null="true" />
 			</key>
 			<one-to-many class="appsupp.module.HighLevelPlan" />
 		</bag>
 
-		<map name="fields" table="DATA_ITEM" schema="EDS"
-			cascade="all">
-			<key column="APP_SUPP_ID"></key>
-			<index column="LABEL" type="string"></index>
+		<map name="fields" table="APP_SUPP_DATA" schema="EDS" cascade="all">
+			<key column="APP_SUPP_ID" />
+			<index column="LABEL" type="string" />
 			<many-to-many class="appsupp.module.DataItem" column="DATA_ITEM_ID" />
 		</map>
 
